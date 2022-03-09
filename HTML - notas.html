@@ -1,0 +1,591 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta charset="UTF-8"> <!-- tipo de caracteres -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- RESPONSIVE -->
+	<link rel="stylesheet" href="block de notas.css">
+
+	<!-- Para un FAVICON -->
+
+	<link rel = "icon" href = "img.png" type = "image/x-icon">
+
+
+	<title>Document</title>
+
+</head>
+<body>
+
+ETIQUETAS
+
+* Cerradas
+<p></p>
+
+* Abiertas
+# no se cierran
+
+<hr>
+<br>
+<img     />
+<link    />
+<script  />
+
+<!-- hipervinculos , links -->
+
+<a href="productos.html" title="esto es texto en hover"> TEXTO CLICKEABLE </a>
+
+<style type="text/css">
+	text-transform: none; <!-- para sacarle el subrayado --> 
+	list-style:none; <!-- para sacarle mas cosas de estilo -->
+</style>
+
+<!-- para ir dentro de la pagina -->
+
+<a href="#pie"></a>
+
+<footer id="pie"></footer>
+
+ESTRUCTURA BASICA
+
+* <head></head> es la parte PRIVADA. Hablan el sitio y el navegador
+
+* <body></body> es el mismisimo cuerpo
+
+	Dentro van
+	<header></header>
+	<div></div> por todos lados
+
+	<main></main>
+	<article>
+	<section></section>
+	</article>
+	<aside></aside>
+	<footer></footer>
+
+* <title></title> el titulo en la solapa del navegador
+
+* <meta charset="utf-8"> INFO EXTRA, encoding, idioma, responsive
+
+
+DOCTYPE
+
+<!-- <!DOCTYPE html>  -->
+<html lang="en">
+<head>
+	<meta charset="UTF-8"> <!-- tipo de caracteres -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- RESPONSIVE -->
+	<title>Document</title>
+</head>
+<body>
+
+	<!-- en el body se dividen en dos grupos -->
+	* ELEMENTOS DE BLOQUE. Ocupan el %100 del ancho del contenedor
+	
+	* ELEMENTOS DE LINEA. Yo decido el ancho segun el contenido
+						  Van uno al lado del otro
+	
+</body>
+</html>
+
+
+
+GLOSARIO de etiquetas que van en el BODY
+
+<h1> ACA VA UN TITULO </h1> a <h6></h6> son tamanios
+<p></p> es un parrafo
+<br> es un salto de linea
+
+<header> LOGO MENU</header> <!-- es el encabezado -->
+
+<nav> TAB TAB TAB TAB </nav> <!-- seria la parte d los tabs -->
+
+<section> ES LA SECCION PRINCIPAL </section>
+
+<article> INVESTIGAR UN POCO , no se que onda</article>
+
+<aside> ES UNA SECCION LATERAL. al costadito </aside>
+
+<footer> BUENO, ES UN FOOTER </footer>
+
+<hr>
+
+
+<head>ETIQUETAS</head>
+
+<header>
+	Aca va la parte superior de la pagina
+</header>
+
+<main>
+	Aca va la parte intermedia
+</main>
+
+<nav>
+	Esto va dentro de las secciones,
+	como header, main, footer
+</nav>
+
+
+<hr>
+
+<h2>LISTAS</h2>
+
+lista ordenada
+<ol></ol>
+
+lista NO ordenada
+<ul></ul>
+
+lista de definicion
+<li></li>
+
+<hr>
+Ej.: 
+<ul>
+	<li>Empresa</li>
+	<li>Producto</li>
+	<li>Servicio</li>
+	<li>Contacto</li>
+</ul>
+
+<hr>
+
+
+
+
+<h3>TABLAS</h3>
+
+<!-- TH: celda encabezado. TD: columna VERTICAL  TR: fila HORIZONTAL -->
+
+<!--  TIENE ATRIBUTOS
+
+border: atributo, valor: 2px que es el tamanio. Tiene recuadro a cada item, y luego otro afuera
+
+cellpadding: es el margen interno
+
+cellspacing: es el margen externo
+
+SE ARMA EN FILAS
+tr -> td (se pone uno a la derecha del otro)
+ -->
+
+<table border="2px" /* cellpadding="50" */ /* cellspacing="20" */>
+	
+	<tr> 
+		<th> ENCABEZADO </th>
+		<th> ENCABEZADO 2 </th>
+		<th> ENCABEZADO 3 </th>
+		<th> ENCABEZADO 4 </th>
+	</tr>
+
+	<tr> 
+		<td> Electrodomesticos </td>
+		<td> Producto 1 </td>
+		<td> Producto 2 </td>
+		<td> Producto 3 </td>
+	</tr>
+
+</table>
+
+<!-- Tambien puede hacerse que una cabecera de tabla ocupe MAS QUE UNA COLUMNA POR FILA mediante el atributo colspan. -->
+    
+    <table style="width: 100%;">
+        <tr>
+            <th>Nombre</th>
+            <th colspan="2">Telefono</th>
+        </tr>
+        <tr>
+
+
+<h3>FORMULARIOS</h3>
+
+<!-- <form action=""></form> -->
+
+<!-- Necesita 3 atributos:
+
+action: Indicamos el archivo que recibe los datos y los procesa.
+		Tiene que ser 'server side' (PHP, ASP, JSP)
+		El DEFAULT es el mismo archivo donde esta el formulario
+
+method: Como se envia. GET o POST
+	GET (default): Viaja la info por la barra de direcciones
+		a continuacion del nombre del archivo
+
+	POST: Viaja con el encabezado del HTML (sera "INVISIBLE")
+
+enctype: Como se codifican los contenidos.
+		Cuando el valor del atributo method es post, este atributo es el  tipo MIME del contenido que es usado para enviar el formulario al servidor. Los posibles valores son:
+		. application/x-www-form-urlencoded: El valor por defecto si un atributo no está especificado.
+		
+		. multipart/form-data: Usar este valor si se está usando el elemento input con el atributo type ajustado a "file".
+		
+		. text/plain (HTML5)
+		Normalmente se utiliza para permitir el envío de archivos a través de un formulario
+
+
+ -->
+
+ <!-- Notese que 'etiquetamos' nuestros inputs con otro elemento llamado label, indicando informacion sobre el campo.
+       Entre las utilidades del label esta la de que esta etiqueta es leida por los lectores de pantalla cuando se hace foco sobre el elemento input que se etiqueta.
+       Tambien, si el usuario tiene dificultad para clickear en areas chicas como los botones de radio o de check, puede hacer click sobre la palabra de la etiqueta y estos se seleccionaran de forma automatica.
+       Para que todo esto suceda es necesario que el atributo 'for' del <label> sea igual al atributo 'id' de ese input -->
+
+ 
+
+<h3> INGRESO DE TEXTO (input) </h3>
+
+
+
+
+> ATRIBUTOS: 
+
+***	<input type="" name="" placeholder = ""> :  definimos que es lo que queremos que ingrese el usuario.
+
+INPUT tiene muchos atributos:
+% autofocus
+	/ es para que el foco vaya al input donde lo ponga al iniciar la carga
+
+type = ""  LE VAMOS A DECIR NOSOTROS AL NAVEGADOR QUE ES LO QUE TIENE QUE HACER EL BOTON: 
+	. Estas van con name = ""
+	"text"
+	"password" : Se ocultan los contenidos
+	"checkbox" para elegir MULTIPLES opciones
+	"radio" para seleccion radio de UNA sola opcion
+	"date"
+	"numbers"
+	"search"
+	"file"
+	"week"
+	"time"
+	"color"
+	"range"
+
+
+	. Estas van con value = "" ES LO QUE QUIERO SE VEA EN EL BOTON. SE USA PARA BOTONES
+	"submit"
+	"reset" limpia el formulario
+	"button" no tiene acciones
+
+	name = "" o value = "" SE LO HACEMOS SABER AL USUARIO:
+
+	placeholder = "" : es para que aparezca en gris clarito la instruccion
+
+	maxlength = "" limita la cantidad de caracteres
+
+
+Si quiero escribir textos mas largos
+
+***	<textarea> </textarea> 
+<textarea name="" 
+			id="" 
+			cols="30" 
+			rows="10" 
+			placeholder="Nombre">
+</textarea>
+
+  -->
+
+<form action="nombre_del_archivo_que_proces.php" method="POST">
+<fieldset><!--  es una bolsita que embolsa sectores -->
+	<legend> Datos Personales </legend>
+
+		<!-- 
+		Etiqueta <label></label>
+
+		Define formalmente a cada elemento de un formulario. Esta etiqueta es de mucha ayuda para generar un formulario accesible. 
+		El principal atributo de la etiqueta label es “for”, que va a referenciar a “label” con su elemento del formulario. El valor del atributo “for” debe ser igual al valor del atributo “id” o “name” del elemento.
+
+		 -->
+		<label for="Nombre"> Ingrese su nombre: </label>
+		<input type="text" name="Nombre" placeholder="Nombre">
+
+
+
+
+
+		<p> Ingresa tu contraseña </p>
+		<input type="password" name="Contraseña" placeholder="Contraseña">
+
+		<hr>
+
+		<textarea name="" id="" cols="30" rows="10" placeholder="Nombre"></textarea>
+		
+
+		<hr>
+
+		<p>Aceptas las condiciones?</p>
+		<input type="checkbox" name="SI">
+		<input type="checkbox" name="NO">
+
+		<hr>
+
+		<label for="sexo"> Cual es tu sexo? </label>
+		<p> Hombre </p>
+		<input type="radio" name="sexo" value="hombre">
+		<p> Mujer  </p>
+		<input type="radio" name="sexo" value="mujer">
+		<p> Otro </p>
+		<input type="radio" name="sexo" value="otro">
+
+		<hr>
+
+<!-- <h3> BOTONES </h3> -->
+		<!-- Hay 3 tipos -->
+
+		<!-- SUBMIT envia el texto -->
+		<input type="submit" value="Enviar formulario">
+
+		<!-- RESET Borra los campos -->
+		<input type="reset" value="Borrar formulario">
+
+		<hr>
+
+<!-- <h3> CONTROLES DE SELECCION </h3> -->
+
+	<!-- aca no se puede ingresar libremente un texto. Hay valores predefinidos.
+		En todos usamos el atributo 
+		value = ""
+
+		Hay 3 grupos:
+
+		. Radio Buttons (una opcion)
+		-->
+
+		<div> hombre </div>
+		<input type="radio" name="sexo" value="hombre">
+		<div> mujer </div>
+		<input type="radio" name="sexo" value="mujer">
+
+		<!-- o -->
+
+		<p>SEXO</p>
+		<label for="hombre"> hombre </label>
+		<input type="radio" name="sexo" value="hombre">
+		<label for="mujer"> mujer </label>
+		<input type="radio" name="sexo" value="mujer">
+
+		<!-- 
+		. Check Box (multiples)
+		 -->
+
+   		 <div>Acepta términos y condiciones</div>
+   		 <input type="checkbox" name="acepta" value="1" />
+
+		
+		<!-- desplegable (una opcion )-->
+		<select>
+			<option value=""> Ingresa tu talle </option>
+			<optgroup>
+				<option> Talle 1 </option>		
+				<option> Talle 2 </option>
+				<option> Talle 3 </option>
+			</optgroup>
+		</select>
+
+		<!-- Disabled: colocando el atributo 'disabled' en nuestros elementos de input estamos indicando que su valor no puede ser modificado desde el mismo elemento.
+        Esto puede ser util para mostrar un valor el cual no seria modificable ni seleccionable.
+        Es importante tener en cuenta que el valor de este elemento deshabilitado no sera enviado. -->
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" value="Alfredo" disabled><br><br>
+
+
+        <!-- Readonly: colocando el atributo 'readonly' en nuestros elementos de input estamos indicando que su contenido es de solo lectura y al igual que disabled no nos permitira modificar el valor, la principal diferencia es que con este seguiremos pudiendo seleccionar el campo, copiarlo, etc.
+        Tambien es importante tener en cuenta que a diferencia del disabled el valor de este campo si viajara con los datos de nuestro formulario. -->
+        <label for="cp">Codigo Postal:</label><br>
+        <input type="text" id="cp" value="6666"><br><br>
+
+
+
+        <!-- Size y Maxlength: Con el atributo 'size' podemos definir el tamano visible de ese input en caracteres, siendo el tamano predefinido 20 caracteres, notese que esto no afecta la cantidad maxima de caracteres que se puedan ingresar, pero esta la podemos modificar con el segundo atributo nombrado, 'maxlength' que define el tamano maximo en caracteres que pueden ser ingresados (inclusive). -->
+        <label for="email">Celular:</label><br>
+        <input type="text" id="email" maxlength="10" size="11"><br><br>
+
+        <!-- Min y Max: Con 'min' y 'max' podemos especificar los valores maximos y minimos para varios tipos de inputs, entre numericos, date y range. pudiendo por ejemplo limitar el rango de fechas seleccionables de un calendario. -->
+        <label for="edad">Edad:</label><br>
+        <input id="edad" type="number" max="100" min="0"><br><br>
+        <label for="fechaDeNacimiento">Fecha de Nacimiento:</label><br>
+        <input id="fechaDeNacimiento" type="date" max="2020-12-31" min="2020-01-01"><br><br>
+
+        <!-- Required: podemos colocar el atributo 'required' sobre los input, haciendo que si se da al boton de submit pero no se completaron estos campos, nos los indique -->
+        <label for="campoObligatorio1">Campo Obligatorio:</label><br>
+        <input id="campoObligatorio1" type="text" required><br><br>
+        <label for="campoObligatorio2">Campo Obligatorio:</label><br>
+        <input id="campoObligatorio2" type="text" required><br><br>
+
+        <input type="reset" value="Limpiar"> <!-- Boton para limpiar el formulario -->
+        <input type="submit" value="Enviar"> <!-- Boton de envio del formulario, 'value' indica el texto a mostrar en el boton. Estos datos serian procesados por el controlador indicado en el action del <form> -->
+
+
+
+</fieldset>
+</form>
+
+
+<header>
+<div>
+<ul>
+	
+</ul>
+</div>
+</header>
+
+
+
+			<h1> IMG </h1>
+
+
+<!-- alt = sirve para cuando no carga la imagen, es el texto que aparece
+	height = 400 px -->
+
+
+<img src="https://image.freepik.com/foto-gratis/taza-linda-color-primer-aislada-blanco_85347-1054.jpg" alt="TAZA LINDA">
+
+
+
+<!-- Video -->
+
+<!-- ATRIBUTOS 
+
+	controls="" > se agrega para agregar controles para el usuario
+
+	src = > la posta es subri link de youtube o vimeo
+
+	autoplay =""
+
+	preload ="auto" -> almacena temporalmente el archivo
+			 o
+			 "metadata" - > almacena solo los metadatos
+
+ -->
+
+<video src="mivideo.mp4" controls=""> </video>
+
+
+<!-- para meter videos de YOUTUBE -->
+
+<!-- 
+	Voy a youtube -> compartir -> incorporar.
+	funciona igual para google maps
+ -->
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2kf43jDU1_0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<!-- audio -->
+
+<audio controls autoplay></audio>
+
+<!-- MAPAS -->
+
+<!-- 
+	parecido a youtube
+
+	voy a la direccion -> compartir -> Incorporar un mapa
+ -->
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1642.573306046088!2d-58.41034509184748!3d-34.57515664511672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb57a4147c5c7%3A0xfc930bf72fdf871f!2zSmFyZMOtbiBKYXBvbsOpcw!5e0!3m2!1ses-419!2sar!4v1600819286303!5m2!1ses-419!2sar" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+<!-- IFRAME -->
+
+
+
+ATRIBUTOS
+
+
+<!-- JAVASCRIPT -->
+<!-- 
+Palabras a aprender
+
+Plug-ins de jQuery
+position sticky  -> para que alguna imagen siga al mouse
+
+scroll reveal -> https://scrollrevealjs.org/  sirve para que aparezcan y salgan imagenes 					cuando scrolleamos
+ -->
+
+
+<!--  para meter CSS -->
+
+<link rel="stylesheet" type="text/css" href="archivos.css">
+
+
+CLASS
+
+
+<!-- traigo clases desde el css -->
+
+<img src=""  class="nombreDeLaClase.css" alt="">
+
+
+ID
+<!-- otra forma es ponerle un ID a una etiqueta o seccion para que tenga un comportamiento unico.
+Se llaman desde css con un # adelante
+ -->
+<img src="" id=" productos" alt="">
+
+
+FUENTES
+
+copio y pego desde google fonts, selecciono mas de 1 y pongo Embed.
+
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,900;1,400&display=swap" rel="stylesheet">
+
+Luego voy a CSS y pego esto:
+
+font-family: 'Lato', sans-serif;
+
+
+**** BOX MODEL Css ****
+
+content : esl espacio donde va el texto o imagen
+
+border: limite entre el elemento y el espacio externo
+
+padding: margen interno
+
+margin: separa el borde y el afuera de caja. es EXTERIOR
+
+
+
+********************
+funcionamiento de URL
+********************;
+/* 
+Por ejemplo:
+
+           protocolo://nombredehost               / ruta  /nombredearchivo?cadenadeconsulta#fragmento
+https://www.example.com/CalzadoDeportivo/Mujer.htm?talla=8#info
+
+Por lo general, los fragmentos (en este caso, "#info") identifican a qué parte de la página se desplaza
+el navegador. Dado que normalmente el contenido es el mismo independientemente del fragmento, los buscadores suelen ignorarlos. */
+
+SITEMAPS
+/* 
+Crea una página de navegación para los usuarios y un sitemap para los buscadores.  
+Para aprovechar los buscadores, crea un archivo de sitemap en formato XML que incluya todas las URL 
+relevantes del sitio web. De este modo, los buscadores descubrirán las páginas. Utiliza https://www.xml-sitemaps.com/
+
+
+Evitar
+Que tu página de navegación quede obsoleta o incluya enlaces rotos.
+Que sólo enumere las páginas sin organizarlas (ej. por tema). */
+
+
+ /* --------------- METADATA --------------------------
+ ---------------------------------------------------------- */
+
+ <www class="seoscout com"></www>
+ /* sirve para ver como se veria nuestro sitio en google */
+
+/* Factores ONPAGE que sirven para mejorar loas busquedas */
+
+/* TITLE */
+
+La ida es que introduzca palabras clave
+
+/* META DESCRIPTION - es lo que aparece abajo del title en Google. Hasta 150 caracteres. Que tenga palabras clave */
+
+<meta name= " description" content = "barret es el jugador mas importante de los allblacks de">
+
+/* META KEYWORDS - aparecen en negrita separadas por comas */
+
+<meta name= "keywords" content=" rugby, allblacks, barrett, ">
+
+/* poner BUENOS ENCABEZADOS. Mantener jerarquias */

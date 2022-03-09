@@ -1,0 +1,100 @@
+! *************
+!     API
+! *************
+
+? Aplication
+? Programming 
+? Interface
+
+Abrir una pagina como www.google.com, es mandar un API request a Google. (webservice)
+Abrir la camara, sacar una foto y mandarla al editor, se hace a traves de una APi tambien
+Hay varios tipos de API request
+
+
+! WEBSERVICE
+Una webservice es una API que se comunica por internet
+? Usa XML & JSON para formatear la data.
+? Los protocolos mas usados son SOAP (para XML) 
+?                               & REST o RESTFUL (para JSON) 
+>                                 esta es la dupla mas utilizada
+
+> REST es IDEMPOTENTE
+
+> *************
+>      HTTP
+> *************
+
+% partes de una respuesta HTTP
+.1 Version http con que opera el servidor
+.2. Codigo de respuesta
+.3. Headers
+.4. Body
+
+Es el protocolo que se usa para transferir data por internet.
+Manda HTTP requests.
+Recibe HTTP responses.
+? CLIENTS es browsers en general. Puede ser otro programa tambien.
+? SERVERS en general son computadoras en la nube.
+
+> PASOS
+1. CLIENTE realiza una HTTP request. Puede realizarse con varios Metodos
+2. SERVER recibe esa request.
+3. SERVER corre una aplicacion que procesa el request.
+4. SERVER devuelve una HTTP Response al CLIENTE
+5. CLIENTE recibe la response
+
+> HTTP Methods.
+
+? El acronimo CRUD son las operaciones que puedo realizar en una database
+Create  --> POST  
+Read    --> GET  
+Update  --> PUT
+Delete  --> DELETE
+
+? Agregamos el 
+Parchear --> PATCH
+
+? POST
+    Crear o subir data ENTERA a un server en colecciones
+    NO tiene limitaciones de longitud
+    NO es IDEMPOTENTE. Cuando lo uso, creo elementos en el servidor
+    Utilizado para la transferencia de información y datos al servidor. Puede utilizarse para enviar parámetros y su longitud es ilimitada.
+    / UN ejemplo es el CHECKOUT de amazon ponele.
+    / Imaginate lo que pasaria si se repite  XD
+
+? GET
+.   EJ: GET /search?platform=Windows&category=office
+    Recibir o leer data de un server por una URL
+    Puede utilizarse para enviar parámetros y su longitud es limitada. 
+    es IDEMPOTENTE. Puedo llamarlo mil veces y siempre devuelve lo mismo
+    Utilizado para obtener un recurso del servidor, identificado por una url. Para la configuración de páginas web (filtros, ordenación, búsquedas, links, etc.).
+
+
+? PUT
+    Actualizar data que ya esta en un server
+    Crear y reemplazar
+    es IDEMPOTENTE. Borro y creo. Puedo hacerlo eternamente
+    
+
+? DELETE
+    Borrar data de un server
+    es IDEMPOTENTE. Borro siempre lo mismo. Puedo hacerlo eternamente
+
+? PATCH
+    Modificaciones PARCIALES a recursos
+    PUEDE ser IDEMPOTENTE. 
+
+
+> Códigos de Respuesta
+    Códigos de estado 1xx – Información
+    Códigos de estado 2xx – Éxito
+    Códigos de estado 3xx – Redirecciones
+    Códigos de estado 4xx – Errores del cliente
+    Códigos de estado 5xx –Errores del servidor
+
+    . Algunos importantes
+    200 – OK, Petición procesada correctamente.
+    301 – Indica al browser que visite otra dirección.
+    403 – Acceso prohibido, por falta de permisos.
+    404 – No encontrado, cuando el documento no existe.
+    500 – Error interno en el servidor. 

@@ -1,0 +1,439 @@
+
+
+/* 
+es un pre procesador de CSS. Los temas de BOOTSTRAP se hacen con SAS 
+
+? Extension .scss
+
+? ¡importante! el archivo debe tener “_” (guión bajo) al principio del nombre. Ej: _colores.scss.
+
+
+*************************
+instalacion
+
+1. Instalar nodejs
+2. Instalar npm
+3. Ingresar al directorio del repositorio (con cd *nombre de carpeta*)
+
+
+ * una vez en la carpeta donde quiero instalarlo
+
+4. Iniciar el npm, con npm init. Luego dar como 8 enters para crear el JSON
+5. Instalar el nodemon y node-sass: 
+?                   npm install -D node-sass nodemon
+  o uso npm install -D node-sass nodemon --save-dev para que se instalen directamenete ene l json
+
+6. Crear la carpeta SCSS y CSS y sus archivos respectivos (scss/main.scss css/styles.css)
+7. Editar el package.json e insertar los lineas dentro de “scripts”:
+    "build-css": "node-sass --include-path scss scss/main.scss css/styles.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+    donde se indica cuál será el archivo inicial de SCSS y adónde va a compilar el .CSS
+8. Compilar (en la consola) con: 
+                  ? npm run watch-css
+	Despues de esto, hay que dejar abierta la consola para que  compile justamente
+
+
+
+* **********************
+* VARIABLES
+* **********************
+? Las variables se definen con un $
+ej:
+
+$color-principal: #f2f2f2;
+
+
+? Sass variables are imperative, which means if you use a variable and then change its value, the earlier use will stay the same. CSS variables are declarative, which means if you change the value, it’ll affect both earlier uses and later uses.
+
+(
+$variable: value 1;
+.rule-1 {
+  value: $variable;
+}
+
+$variable: value 2;
+.rule-2 {
+  value: $variable;
+}
+
+===>
+.rule-1 {
+  value: value 1;
+}
+
+.rule-2 {
+  value: value 2;
+}
+
+)
+
+? puedo operar (realizar operaciones)
+
+$ancho: 50%;
+
+div {
+  width = $ancho / 2  // esto va a hacer un ancho de %25
+}
+
+?PARA HACER HOVER
+
+uso el amperson
+&:hover {
+    color: aqua;
+
+*/
+
+/* 
+
+En Bootstrap 4 los temas se crean con variables Sass, mapas Sass y código CSS propio. 
+No existe una hoja de estilos especial para crear temas, como sucedía en Bootstrap 3. 
+Se recomienda utilizar los archivos Sass (que veremos más adelante) incluidos en Bootstrap
+ para reutilizar todas las variables, mapas y mixins que puedas.
+
+*/
+
+// **********************
+// IMPORT
+// **********************
+
+/* 
+  @import nos permite tener hojas individuales de SCSS e importarlas a la principal
+  Se usa para resets, colores especiales
+
+  se nombran con un _ adelante
+
+  Ej.: _reset.scss
+
+  \Luego, @import "reset.scss" (probarlo sin el scss
+*/
+
+
+// PROBAR USAR @use en vez de import
+
+
+
+// **********************
+// CONDICIONALES
+// **********************
+
+// 1ro creo la variable
+
+$color-red: rojo;
+
+//  las variables van siempre con $ adelante
+// los operadores van con @ adelante
+
+div {
+
+    @if ($color-red == rojo) {
+        color: red;
+    }
+    @else {
+        color: black;
+    }
+
+}
+
+$animal: gato; /* o uso un ELSE IF */
+
+p {
+      @if $animal == gato {
+             color: blue;
+      } @else if $animal == perro {
+                 color: red;
+     } @else if $animal == caballo {
+                color: green;
+     } @else {
+                color: black;
+      }
+}
+
+// **********************
+// BUCLES
+// **********************
+
+
+// FOR
+// **********
+
+// For - Bucle, algo que se repite
+//  $i = interpolacion/iteracion
+// i = poner una cosa entre otras que sigen una oracion
+// #{$i} es el comodin para que entre el numero de iteracion
+
+// @for $var from A [to|through] B {
+  //Bloque de reglas donde podremos utilizar $var mediante interpolación
+//}
+
+        //TODO  through INCLUYE a B. 
+        //?       to    EXCLUYE a B
+
+  
+//? para usar el iterador, uso #{ }
+@for $i from 1 through 6 {
+    h#{$i} {font-size: $i*2em;}
+    //  uso # y la iteracion entre llaves para que se "auto" llenen los numeros
+
+}
+
+
+// en el CSS sale esto
+
+h1 {
+    font-size: 2em; }
+  
+  h2 {
+    font-size: 4em; }
+  
+  h3 {
+    font-size: 6em; }
+  
+  h4 {
+    font-size: 8em; }
+  
+  h5 {
+    font-size: 10em; }
+  
+  h6 {
+    font-size: 12em; }
+  
+
+
+// EACH (for each)
+// **********
+
+// @each KEY, VAR in MAP {
+//   .CLASE#{$KEY} {
+//       background-color: $VAR;
+
+$redes: ( /*Declaramos nuestro MAP*/
+        twitter: #55acee,
+        facebook:  #3a5795,
+        send-mail: #C25E30
+); 
+/*Creamos el bucle para usar los valores del mapa*/
+@each $redSocial, $color in $redes {
+   .btn--#{$redSocial} {
+       background-color: $color;
+   }
+}
+
+
+// o
+
+// @each VAR in LIST {
+//   .#{$VAR} algo
+//? itera sobre los CONTENIDOS
+
+
+// SCSS
+@each $animal in puma, sea-slug, egret {
+  .#{$animal}-icon { 
+        Background-image:  
+         url('/images/#{$animal}.png');
+   }
+} /*animal tendrá los valores de cada uno */
+
+// CSS
+.puma-icon {
+  background-image: url("/images/puma.png");
+}
+.sea-slug-icon {
+  background-image: url("/images/sea-slug.png");
+}
+.egret-icon {
+  background-image: url("/images/egret.png");
+
+
+  
+// **********************
+// MAPS (es como un objeto)
+// **********************
+
+//? LIST es como un ARRAY
+
+// COLECCION de variables que suelen tener relacion
+
+// par clave, valor
+//  $map: (key1: value1, key2: value2, key3: value3);
+
+$redes: ( /* MAP */
+        twitter: #55acee,
+        facebook:  #3a5795,
+        send-mail: #C25E30
+); 
+
+// $font-sizes: ("small": 12px;
+//               "normal": 18px;
+//               "large": 24px);
+
+
+  
+// **********************
+//     MIXINS
+// **********************
+
+/* 
+  Mixins e Includes:
+
+  El codigo reutilizable, vamos a definir propiedades que SABEMOS
+  con certeza que vamos a repetir luego, por ejemplo
+  si tengo 8 o 9 elementos repetidos (divs con productos, servicios)
+
+  hacer un MIXIN para repetirlo con el INCLUDE en esos elementos
+
+  mixin se escribe con ARROBA y lo mismo que las variables
+  y las clases hay que ponerle un nombre que decididmos nosotros
+
+  @mixin NOMBRE(var1, var2)
+
+  .CLASS {
+  @include NOMBRE(var1, var2)
+  }
+
+*/
+
+@mixin colores ($texto, $back, $border) { // puedo darle DEFAULTS $texto: Sans-serif
+  font-family: $texto;
+  background-color: $back;
+  border: $border
+  
+}
+
+.elemento_cualquiera {
+  @include colores(Arial, pink, solid 1px black)
+}
+
+
+// **********************
+// *    EXTEND
+// **********************
+
+/* 
+Si queremos agregarle algo mas a ese mixin, o mismo a otros elementos,
+le sumabamos el extend
+y le agregas propiedades y valres extras
+
+es el EQUIVALENTE  de sass, al ID, con el cual
+extendes la clase y basicamente le sumas alguna cosita particular.
+
+EL nombre lo definimos nosotros y lo declaramos con
+
+  %
+
+Para citarlo, se llama con un @
+
+*/
+
+%botones {
+  width: 100px;
+  text-align: center;
+}
+
+.clases-botones {
+  @extend %botones;
+}
+
+// **********************
+// *    MODIFICADORES
+// **********************
+
+
+//TODO nth
+// devuelve el nth elemento de una lista
+p {
+  background-color: nth(#333 #555 #eee, 2); 
+}
+
+
+
+// **********************
+// *    PAQUETES / LIBRERIAS
+// **********************
+
+//> include-media
+
+//?https://raw.githubusercontent.com/eduardoboucas/include-media/master/dist/_include-media.scss
+
+/* 1. Copiar el texto en un nuevo archivo scss _breakpoints.scss
+  2. Importar en los archivos que lo necesite
+  3. arriba hay medidas pre establecidas, pero puedo poner las mias propias
+  4. @include media('<=phone') {
+        background-color: rgb(255, 68, 0);
+        filter: sepia(1);
+    }
+
+    
+  
+
+
+
+   */
+
+// **********************
+// *   FRAMEWORKS
+// **********************
+
+/* 
+,=========================
+, BULMA
+,=========================
+
+.1 Instalar Bulma con NPM
+    ? npm install bulma
+
+.2 (a) Agregar estas lineas al html (si laburo con CSS. Uso los CDN)
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script
+        defer
+        src="https://use.fontawesome.com/releases/v5.3.1/js/all.js">
+    </script>
+
+.2 (b) Si usamos SASS, usar esta linea en el HTML en vez del CDN
+    ? <link rel="stylesheet" href="css/mystyles.css">
+
+    . o esta linea en index.js
+
+
+.3 Llenar el package.json con el init
+    ? npm init
+    
+. cuando pida por el Entry Point, pegar esto
+    * scss/app.scss
+
+.3 b) si ya tenia un package.json, entonces le agrego esta linea:
+    * "main": "scss/app.scss",
+
+.4 Instalar las dependencias (son para la etapa de desarrollo)
+    ? npm install node-sass --save-dev
+    ? npm install bulma --save-dev
+
+.5 crear este path en mi carpeta
+    % scss/app.scss
+
+
+.6 Agregarle estas lineas
+    @charset "utf-8";
+    @import "../node_modules/bulma/bulma.sass";
+    // para REACT, agregar un ../ al import
+
+
+.7 agregar al package.json los node scripts para crear el CSS
+    "scripts": {
+      "css-build": "node-sass --omit-source-map-url scss/app.scss css/app.css",
+      "css-watch": "npm run css-build -- --watch",
+      "watch": "npm run css-watch"
+    }
+    // para REACT, cambiar el css-build por este
+		"css-build": "node-sass --omit-source-map-url src/scss/app.scss src/css/app.css",
+
+
+.8 correr el build para crear el css compilado
+    ? npm run css-build
+
+.9 correr el WATCH para poder desarrollar y ver el resultado ao vivo
+    ? npm start
+
+
+
+*/

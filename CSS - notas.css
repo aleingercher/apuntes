@@ -1,0 +1,422 @@
+/* BLOCK DE NOTAS css */
+
+
+
+	
+/*!  MEDIA QUERY */
+
+	/* Sirve para plantear reglas para el responsive */
+
+/*	breakpoints: son los tamaños preestablecidos.
+	* EL celu tiene de 0 a 350px*/
+
+
+/* para celus mas chicos*/
+@media only screen and (max-width: 320px) {
+	.imgMain {
+		display: none;
+		color: #fcf82c;
+	}
+	
+}
+
+/* un poco mas grande*/
+@media (min-width: 321px) and (max-width: 500px) {
+	
+	
+}
+
+
+
+**************************
+GRADIENTES (o tono continuo)
+**************************
+
+Lineales
+
+	linear-gradient
+
+Radial
+	
+	radial-gradient:
+
+arrancamos con 
+
+div {
+	background-image: linear-gradient(red, yellow);
+	background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+
+/*background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);*/
+									angulo
+}
+
+/* pueden tener 2 o mas colores */
+
+
+**************************
+    TRANSFORMACIONES
+**************************
+
+/* PARA JUNTAR 2 TRANSFORMACIONES
+
+pongo una seguida de otra dentro de un transform separadas por un espacio
+
+transform: translate(-120px, -120px) scale(1.1)  ;
+*/
+
+
+div {
+	transform: translate(10px, 20px); /* para trasladarlo. mejor que el FLOAT */
+	/*transform:translate( ) cambia la ubicación del objeto (como si fuese un position).  
+
+Requiere dos números y su unidad, separados por una coma:  
+El primero es el desplazamiento horizontal (eje X).
+El segundo el desplazamiento vertical (eje Y). 
+Valores positivos mueven a la derecha/abajo.
+Valores negativos mueven a la izquierda/arriba.  
+Sí, existe translateX() y translateY(), cada uno solo recibe un solo número con su unidad.
+*/
+
+
+	transform: rotate(45dg); /* se usa en deg , que es degrees */
+
+	transform: rotateY(45dg); /* esto DEFORMA las imagenes */
+	transform: rotateX(45dg);
+	transform: rotateZ(45dg);
+
+	/* ESCALA */
+	transform: scale(2, 1); /* eje X, eje Y */
+	transform: scale(2); /* un solo valor, todo uniforme*/
+
+	/* TORCER */
+	transform: skew(20deg); /* va en grados tambien */
+	transform: skewX(); transform: skewY();
+}
+
+
+**************************
+    TRANSICIONES
+**************************
+/*Con la propiedad transition podemos lograr que al pasar el mouse por el
+ elemento, “haga una animación”. Recordemos que para los enlaces usamos 
+ “a:hover” para que cambien sus estilos al pasar el mouse por encima. 
+“:hover” se puede utilizar con CUALQUIER elemento sobre el cual quisiéramos
+ ejecutar una transición, un div, span, párrafo, etc. veamos los ejemplos...
+*/
+
+/*Imaginemos que queremos que cambie su altura: debemos 
+indicar qué propiedad queremos que se anime y por cuántos 
+segundos (2 segundos). 
+*/
+
+1) 
+ Genereo una animacion :
+
+ div:hover {
+   height: 200px;
+}
+
+
+2) le digo cuanto tiempo quiero que dure / tarde
+
+div {
+	transition: height 2s;
+
+	o 
+
+	transition: all 2s;
+}
+
+
+
+**************************
+    ANIMACIONES
+**************************
+
+https://animate.style/ /* ANIMACIONES YA HECHAS!! */
+
+/*una animación es un efecto que se loopea tantas veces como quieran. 
+ No depende del cambio de estado (el elemento se animará desde la carga
+  de la web).  Una animación es la unión de dos partes.  Por un lado una 
+  línea de tiempo (llamada keyframe) con la información de los cambios. 
+   Por otro lado, aplicar ese keyframe a un elemento que será el que se
+    verá animado.
+*/
+1) /* usamos porcentajes para marcar pasos de la animacion
+	puedo usar from{} a to{} en vez de los porcentajes
+*/
+
+@keyframes un_efecto {
+   0%{ width: 100px; }
+   25%{ width: 300px; }
+   50%{ width: 200px;
+     background-color: red; }
+   75%{ width: 300px;}
+   100%{ width: 100px;
+     background-color:green;}
+}
+
+
+2) 
+
+section {
+   width: 100px;
+   height: 100px;
+   background-color: green;
+   animation-name: un_efecto;
+   animation-iteration-count: infinite; /* cantidad de veces*/
+   animation-timing-function: ease-in; /* es como un fade in */
+   animation-duration: 2s; /* tiempo entre 0 y 100%*/
+   animation-delay: 0s;
+}
+
+
+
+*****************
+       CDN
+*****************
+/* es una forma de importar estilos */
+
+1) pego lo siguiente en el HTML
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+ Luego tengo TODOS los estilos de esa pagina disponibles para usar
+
+2) 
+	agrego la class 'animate__animated' a un elemento , dejo un espacio
+	y pongo animate__ANIMACION
+
+	<h1 class="animate__animated animate__bounce"> An animated element </h1>
+
+
+3)
+	Luego desde otra clase aplicada al mismo elemento, le cambio
+	el animation-duration: 0s; 
+
+
+**************************
+    FRAMEWORKS
+**************************
+
+BOOTSTRAP ;
+ /*ESTÁ DISEÑADO PARA UN DESARROLLO RAPIDO DE INTERFACES RESPONSIVE, mobile first
+Es una herramienta de prototipado, tiene plantillas y clases pre creadas
+* lo creo TWITTER
+* es opne source
+
+* SUPER TIP: Es alta herramienta para los desarrolladores que 
+	CARECEN de conocimientos o habilidades de DISEÑO UI. De diseño de interfaces, o lo más visual! 
+	Podemos lograr un sitio web profesional, super velozmente 
+
+* Por eso es importante también saber código antes de ver un framework. 
+	Asi podemos detectar qué es lo que necesitamos, qué es lo que no,
+	DONDE TOCAR, es decir donde cambio o personalizo ese codigo de ejemplo 
+	para agregarle mi contenido 
+
+
+SE INSTALA SIEMPRE EN ESTE PATH:
+
+	index.html
+	css/
+	    bootstrap.css
+	    bootstrap-responsive.css
+	js/
+	    bootstrap.js
+
+
+DOS MANERAS
+
+
+1. Código compilado listo para usar para Bootstrap 
+
+	Una vez que copia las carpetas de css y de js, cambio la ruta de los scrpit de abajo a rutas locales
+
+
+2. BootstrapCDN (Enlace directo) Funciona como el GOogle Fonts
+
+	@ https://getbootstrap.com/docs/4.0/getting-started/download/
+
+
+	a) copio el CDN
+
+	b) lo pongo ANTES de mi propia pagina de CSS. Cosa que si quiero cambiara algo, 
+		el ultimo que se lee es el mio
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+		 crossorigin="anonymous">
+
+
+	ESTE ES UN LINK ALTERNATIVO
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+		crossorigin="anonymous">
+
+
+	c) el SCRIPT lo pego al FINAL DEL BODY
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+		crossorigin="anonymous"></script>
+
+		el jQuery hay que ponerlo siempre primero
+		luego va el de bootstrap
+
+*/
+
+
+/*
+	Se divide en 12 columnas
+	La grilla se divide en 12 columnas, que varían su ancho dependiendo de la resolución 
+	del usuario móvil o de escritorio.
+
+	Estas columnas se ubican siempre dentro de una fila, el div .row mencionado anteriormente.
+
+	Se representa como col-md-x que indica que el div ocupará X columnas en un .container 
+
+	.col-md-4
+	Columna de grilla - dispositivo - cant de columnas
+
+	dispositivo puede ser:
+		sm
+		md
+		lg
+		xl
+		fluid;
+
+en los DIV
+
+container > row > col-4 
+
+
+	<div class="col-md-4 col-sm-6">
+
+	De esta manera logramos que el elemento ocupe distintas columnas de la grilla,
+	 dependiendo de la resolución del usuario, sin agregar o modificar el archivo de estilos, 
+	 lo cual ahorra mucho tiempo a la hora del ajuste responsivo.
+	También se pueden ocupar algunas columnas de la grilla dejando un espacio libre a los costados. 
+	Para ello se utilizan las clases con offset: .col-md-offset-4
+
+	al PADRE le doy class='row' para que lo de adentro funcione como FILA
+	y se coloquen uno al lado de otro
+
+
+	LUEGO
+	busco en la documentacion de bootstrap CLASES para poner en las etiquetas
+	en el HTML, agrego clases, como por ej  <class="form-control">
+
+
+IMAGENES
+
+	con class='img-fluid' se expanden las imagenes
+
+	tambien esta bueno usar el max-width para que no se nos zarpen las fotos
+
+*/
+
+
+JQUERY ;
+/*JQUERY: Es una libreria, una plataforma con rutinas de javascript. 
+Javascript = Lenguaje de programación que controla todo lo que se mueve 
+e interactúa con la pag. 
+Animaciones, aplicaciones para cualquier sistema operativo. 
+*/
+
+
+POPPER ;
+/* libreria que ayuda a posicionar los elementos con facilidad */
+
+
+BEM ;
+/*
+BEM distingue claramente 3 conceptos: el Bloque, el Elemento y el Modificador.
+Bloques (div, section, article, ul, ol, etc.), elementos (a, button, li, span, etc.) y 
+modificadores. Estos últimos se definen de acuerdo a la posterior utilización que haga
+el desarrollador a cargo.
+Se va a pensar desde el elemento más grande, hacia el más chico. Y se va a separar 
+con doble guión. 
+Hace al codigo mas facil de leer
+
+
+.block__element--modifier
+
+.header__nav--rojo {
+	background-color: red;
+}
+
+
+Se usa mucho para escribir SASS
+*/
+
+**************************
+        AFTER BEFORE (y mas pseudo elementos)
+**************************
+
+
+
+/* Ej.:
+
+con SELECTION cambio el color de seleccion de texto */
+
+.dialogo::selection {
+	background-color: #d6d61a
+}
+
+
+/* 
+	con FIRST LINE, cambio estilo sobre la primera linea. FIRST LETTER es parecido
+*/
+
+.dialogo::first-line {
+	font-family: 'Lato';
+	font-size: 1.3em;
+
+}
+
+
+/* 
+con AFTER pongo algo INMEDIATAMENTE despues de la clase a la que lo aplique
+si le pusiera algo en el content, se veria el texto.
+En el ejemplo, meto un traingulito para abajo del div al que lo aplico
+ */
+
+
+.dialog::after {
+	content: '';
+	display: block;
+	position: absolute; /*para que quede abajo, pongo el div RELATIVE y el traingulo ABSOLUTE */
+	bottom: -40px;
+	right: calc(50% -10px);
+	height: 10px;
+	width: 10px;
+	border-top: 20px solid grey;
+	border-right: 20px solid transparent;
+	border-left: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+}
+
+
+******************
+    POINTER
+******************
+
+.class {
+    pointer-events: none; /* anula los clicks. All hace lo contrario */
+}
+
+
+/* 
+!############# BUTTON #############
+ */
+
+ /* para que cambie cuando se active el boton. Sirve para generar profundidad */
+
+.btn-random:active{
+    box-shadow: 0 8px #fff;
+    transform: translateY(5px);
+}

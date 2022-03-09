@@ -1,0 +1,628 @@
+/*% BLOCK DE NOTAS css */
+
+/* 
+> ----------- RESETS inicial ----------------
+> ------------------------------------------- */
+
+/*
+? resetear los estilos del navegador tambien en after y before */
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+                /* cualquier padding o margen que se agregue asi,
+                 se queda adentro del tamaño del content.
+                Se suele meter en html o en * para que afecte a todo
+                */
+}
+
+
+/* ? TIPS */
+/* Make images easier to work with */
+img {
+	max-width: 100%;
+	display: block;
+}
+
+/* 
+> ----------- SELECTORES --------------------
+> ------------------------------------------- */
+
+#ID {} /* id */
+
+.CLASE {} /* clase  */
+
+p.CLASE{} /* CLASE dentro de un p. Sirve para otro elemento cualquiera, hasta otra clase!.  */
+
+
+/*% FAMILIARES  */  
+.clase1 .clase2 {} /* cuando estan separados, el primero es padre, 
+                        abuelo o tatarabuelo del segundo,
+                        por ejemplo <div class=clase1>
+                                        <p class= clase2> 
+                                    </div> */
+
+.clase1 > p {}  /* direct children.
+                esto va seleccionar los p que sean hijos DIRECTOS */
+
+.clase1 .box + .box {}/* adjacent sibling
+                        ponele que tenemos 4 .box en .clase1
+                        el  +  se lee asi:
+                        si hay un .box en .clase1 que tenga un .box
+                         INMEDIATAMENTE ANTES...
+                        Asi, este selector aplicaría a todos menos el 1ro,
+                         ya que no tiene ningun .box antes!
+                        */
+
+.clase1 .box ~ .box {}  /* general sibling
+                        es como el adjacent sibling, pero se aplica si hay 
+                        un .box ANTES, pero no necesariamente adyacente!*/
+
+a:first-child {} /* Selecciona cualquier <a> que sea el primer elemento entre sus hermanos */
+
+#contenido > p:first-child {} /* asi le das contenido al primer <p> hijo de #contenido */
+
+header :is(h1, a, .btn, li) {} /* para abreviar el header a, header h1, header li....
+                                Toma el grado de especificidad mas alto dentro
+                                 del parentesis */
+
+:is(header, .card) p:hover {} /*  para abreviar tambien el PADRE .
+                                esto va a modificar el p dentro de header y .card */
+         
+
+
+/*% ATRIBUTOS  */
+/* supongamos que tenemos las clases:
+.primer-link .primerOtroLink .segundo-link .linkTercero .no-primer-link  */ 
+
+[atributo = "valor"] {} /* atribute selector
+                            selecciona atributos */
+a[target] {}  /* selecciona los a con atributo target */
+
+a[href="index.html"] {} /* incluso un atributo super especifico!! */
+
+
+a[class|="primer"] {} /* starts with                       
+                        /* selecciona  los que empiezen con la palabra exacta. 
+                         Seleccionaria .primer-link, pero la
+                        clase primerOtroLink no la seleccionaria */
+
+a[class^="primer"] {} /* selecciona  los que empiezen con la palabra pero puede
+                        ser INCOMPLETA. Selecciona esas dos clases:
+                        ".primer-link  .primerOtroLink"   */
+
+a[class$="nk"] {} /* ends with
+                     selecciona  los que terminen con la palabra,
+                      pero puede ser INCOMPLETA. Selecciona estos:
+                    .primer-link .primerOtroLink .segundo-link .no-primer-link  */
+
+a[class*="mer"] {}/* selecciona las clases donde aparezca en cualquier 
+                    lado ese string. Es un selector universal.  Selecciona:
+                    .primer-link  .primerOtroLink  .no-primer-link  */
+
+
+/* 
+> ----------- PSEUDO ELEMENTOS --------------------
+> ------------------------------------------- */
+
+/*?---- HOVER  */
+
+ul ul:hover li {} /* afecta al li, cuando hago hover sobre el ul mas cercano */
+
+/*?---- FOCUS  */
+
+input:focus {} /* Cuando se hace click o se toca en el celular.
+                Esta bueno para los inputs */
+
+
+
+/* 
+> ----------- PROPIEDADES --------------------
+> ------------------------------------------- */
+
+/*% MEDIDAS  -----------------------------------*/
+
+/* 
+. rem
+
+    La R es de route.
+    Puedo poner 2rem como font-size y usar tambien 62.5% para modificar el tamaño del rem.
+    Es el tamaño de una M mayuscula!
+
+. em
+    Un em SIEMPRE es 16px
+
+
+*/
+
+
+.clasePrueba {
+
+/*% --- CONTENEDORES  -----------------------------------  */
+
+    /* * BOX MODELING */
+    /*/ margin [ border [ padding [ content ] padding ] border ] margin */
+    
+    padding: 5px 10px 12px 15px;
+            /*top  right bottom left*/
+    padding: 50px 80px;
+            /* Y - X */
+
+    border: solid 20px red; /* Hay varios tipos. solid, dashed, */
+    /* se pone tipo de borde, tamaño, y luego color */
+
+    margin: 5px 10px 12px 15px;
+            /*top  right bottom left*/
+            /** margin auto puede ser un gran amigo */
+    
+	box-shadow: 1px -20px 8px black; /* Hace una sombra al contenedor */
+            /* offset-x | offset-y | blur-radius | color */
+
+    max-width: 600px; /* esto pone una medida maxima. si se achica es responsive */
+    min-width: 100px;/* este elemento tendra un minmax de 100px a 600px */
+
+
+                                /*% posicion */
+
+    position: relative; /* se mueve en relacion a si mismo. como no afecta a otros, 
+							puede superponerse con otros. Deja su espacio original VACIO.
+							se usa en los PADRES para llevarse a o s hijos consigo
+							Puedo usar procentajes, solo si el PADRE tiene un alto
+							definido 
+							*/
+    position: absolute; 
+                        /* Saca su posicion original y la cambia definitivamente.
+						 si su padre tiene position relative, el HIJO con absolute
+						 se mueve en relacion a el . sino, son relativos al body.
+						 Le saca caracteristicas de bloque. Los hace comportarse 
+                         como inline */ 
+                         
+                         /* un truco para posicionar algo en la mitad de su altura,
+                         es ponerle
+                         position: absolute;
+                         top: 50%;
+                         transform: translate(-5%, -50%);
+                         
+                         */
+    /*
+	/	para hacer MENU con SUB-MENU y que se vea al hover, me sirven estas dos positions. 
+	/	los items del primer menu son relativos. El submenu es relativo*/
+
+		/*/ ul li:hover ul {display:block;} */
+
+        position: fixed; /* Tambien pierde el tamanio en el flujo. Tambien se comporta
+                            siempre como inline.
+                            Es siempre RELATIVO  a la ventana del NAVEGADOR.
+                            Le saca la caracteristica de bloque a las etiquetas .
+                            Se fija el elemento a un lugar de la ventana, y este no se mueve
+                            ni si quiera haciendo scroll. (Se usa mucho para las alertas, 
+                            las suscripciones o el whatsapp abajo a la derecha) */
+
+        position: sticky; /*Es como RELATIVA, pero te sigue si te moves. se usa para
+                            barra de MENU.
+                            NO le saca la caracteristica de bloque a las etiquetas .
+                            El elemento es posicionado en el “flow” natural del documento, 
+                            digamos que es un valor que funciona de forma híbrida,
+                            tanto como “relative” como “fixed”. 
+                            Es decir, cuando llega el “viewport” (la ventana del navegador) 
+                            hasta donde se encuentra, se “pegará” sobre el borde superior.*/
+
+        top: 40px; 
+        right: 50px; /*posiciono manualmente a las position absolute, fixed y sticky */ 
+
+
+                                /*% overflow */
+        /** sirve para decir que queremos que pase con los objetos que salen fuera de la caja */
+        overflow: scroll;/*Genera una barra de scroll en los dos ejes
+ 					        (x/y) del elemento aunque no se necesite.  */
+
+	    overflow: hidden; /* El excedente no se muestra (lo corta) →  recomendado. */
+
+ 	    overflow: auto; /* Genera el scroll solo en el eje necesario*/    
+         
+         
+                                /*% display */
+        /*
+        *Con display le cambiamos el comportamiento, y por ejemplo logramos 
+        *que los inline se ubiquen uno abajo del otro, o los blocks uno al lado del otro. 
+        *INVERTIMOS los roles
+        */
+
+        /* ul li {} */
+        display: inline-block; /* para poner un elemento al lado de otro
+                                    Lo malo es que no se le puede cambiar ancho y alto.
+                                    Padding y margin solo a los costados. */
+
+        display: none; /*ocultar elementos*/
+
+        display: inline-flex;/* para sacar a un elemento de su caracteristica
+                                de block (un <a> por ejemplo) y darle caracteristicas de 
+                                flex adentro */
+
+                                /*% FLOAT */                              
+        /*Hace flotar elementos. Los saca del flujo natural del html*/
+
+        /* Cuando “flotamos” un elemento. Los contenidos hermanos, 
+        se van a acomodar alrededor de este.  Tomando el espacio que dejó este al moverse. 
+        Por eso se habla de que modificamos el flujo normal, pq ciertos elementos 
+        se van a ver afectados y re acomodados según el FLOTADOR. 
+        BASICAMENTE: LLEVA LAS COSAS AL “AIRE” Y LAS OTRAS SE ACOMODAN. (no hay center)
+        */
+        float: right;
+
+
+                                 /*% clear */    
+        /*La propiedad clear indica el lado del elemento HTML que no debe ser adyacente 
+        a ninguna caja posicionada de forma flotante. Si se indica el valor left, el 
+        elemento se desplaza de forma descendente hasta que pueda colocarse en una 
+        línea en la que no haya ninguna caja flotante en el lado izquierdo.
+        La especificación oficial de CSS explica este comportamiento como "un desplazamiento 
+        descendente hasta que el borde superior del elemento esté por debajo del borde 
+        inferior de cualquier elemento flotante hacia la izquierda".
+        Si se indica el valor right, el comportamiento es análogo, 
+        salvo que en este caso se tienen en cuenta los elementos desplazados hacia la derecha.
+        El valor both despeja los lados izquierdo y derecho del elemento, ya que 
+        desplaza el elemento de forma descendente hasta que el borde superior
+        se encuentre por debajo del borde inferior de cualquier elemento
+        flotante hacia la izquierda o hacia la derecha.*/
+
+        clear: both; /* Hace que no pueda haber ningun elemento a ninguno de sus lados */
+
+/*%---- TEXTO  ----------------------------------- */
+
+	color: #b5838d;
+	font-style: normal; /* no se usa mucho */
+	font-weight: bold; /* GROSOR o PESO*/ 
+	font-size: 20px; /* Unidades varias: %, rem, px, char */
+	font-family: Impact, sans-serif; /* fuente1, fuente2, etc */
+	text-align: justify; 
+	text-transform: uppercase; /*  mayuscula, minuscula,capitalize pone Mayuscula en la primera letra */
+    line-height: 10px; /* interlineado. Unidades varias: %, rem, px, char */
+	text-decoration: none; /* se usa mucho con NONE para sacarle el subrayado a los links
+                             Puede ser: line-through, underline, overline */
+	letter-spacing: 5px; /* para separacion E N T R E   L E T R A S */
+	word-spacing: 30px; /* espacio     que    hay      ENTRE     PALABRAS */
+
+                                    /*% fuentes */
+    /* copio y pego desde google fonts, selecciono mas de 1 y pongo Embed.
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,900;1,400&display=swap" rel="stylesheet">
+    
+    Luego voy a CSS y pego esto:
+    
+    font-family: 'Lato', sans-serif; 
+    
+    Tambien pueden importarse desde el CSS con un @import
+    */
+
+/*% ESTILO DE LISTAS  -----------------------------------*/
+
+	list-style-type: upper-latin; /* es por si queremos ver numeros romanos, o letras, o lo que queramos 
+                                    ol.romano {list-style-type: upper-roman ;} */
+    list-style-image: url("DIRECCION DE IMAGEN tipo icono"); 
+                        /* imagen para reemplazar los puntos en las listas 
+                            https://www.w3schools.com/css/tryit.asp?filename=trycss_list-style-type_all
+                        */
+    list-style-position: outside; /* es para indentar la lista */
+    list-style: none; /* SE USA MUCHO para sacar el subrayado*/
+
+
+/*% --- BACKGROUND  ----------------------------------- */
+
+    background-color: #abc123;
+    background-color: darken(#ffffff, 50%); /* darken(COLOR, PORCENTAJE DE "OSCURECIMIENTO" */
+    background-image: url("LINK CON IMAGEN. PUEDE SER LOCAL");
+    background-attachment: fixed; /* para hacer efecto PARALLAX */
+    background-repeat: repeat; /* Si se repite, se estira o que corno. El default es el repeat */
+    background-position: none /* pos X pos Y o center right	etc */;
+    background-size: cover; /* cover cubre el contenido. contain para contenedores */
+
+}
+
+
+.claseFlex{
+
+/*% --- FLEXBOX  ----------------------------------- */
+    /* NO ES HEREDITARIO si el padre tiene una class FLEX, igual hay que ponerle a los hijos que sean flex tambien */
+
+    /* Primero necesito un contenedor. Abro una clase PADRE*/
+
+	/* Para que no se cuele nada en una ROW, que al ser flex tienden a completar
+	lineas, tengo que sumar 100% entre los items que quiero 
+	que llenen la misma linea */
+	
+	/*Flexbox es un modo de diseño que nos permite crear
+	 estructuras para sitios web de una forma más fácil.
+	 SE APLICAN AL PADRE
+	 Es como un MODELO de layout, (LAYOUT = DISEÑO, MAQUETACIÓN, ESTRUCTURA)
+	Flexbox nos va a ayudar a posicionar elementos con menos código. Nos ayuda a 
+	distribuir el espacio entre los elementos, convirtiendolos en estas CAJAS FLEXIBLES. 
+	Convierte al box model, en flexible. */
+
+    display: flex; /*(el que inicia): Indicará que sus hijos serán “flexibles”*/
+
+    flex-direction: row /* si van en filas o columnas 
+                        Uso column para celular, row para compu*/;
+
+    flex-wrap: /*¿se hará multilínea cuando llegue al limite?
+                saltan abajo si se quedan sin espacio?
+                nowrap: se ven en la misma dir, pero se achican
+                wrap: mantienen tamaño pero se corren */;
+
+    flex-flow: row nowrap/* junta DIRECTION y WRAP*/;
+
+    justify-content: space-between/*alinear horizontalmente a los hijos si el padre
+                                es “fila” o verticalmente si el padre es “columna”
+                                Nos va a ayudar a distribuir los flex items (hijos)
+                                en el contenedor (padre) cuando los ítems no utilicen 
+                                todo el espacio disponible en su eje principal actual.
+                                flex-start o flex-end
+                                space-between; LLENA TODO EL ESPACIO con los items que le doy.
+                                space-around; LLENA TODO, pero centrado. no va hasta el borde.
+                                space-evenly; parecido a space-around. todos los espacios iguales.
+                                */;
+
+    align-items: baseline ; /* complementa el justify content. Trabaja en el eje cross.
+                            alinea verticalmente a los hijos (si el padre es “columna”) 
+                            baseline; alinea el CONTENIDO de los contenedores.
+                            El resto son iguales a justify content
+                            */
+
+    align-content: stretch;/* Necesito que no tenga las dos medidas fijas (width y height).
+                            Esta propiedad sólo tiene efecto cuando el contenedor 
+                            flexible tiene varias líneas de flex items (hijos). Si se colocan en una sola
+                            línea esta propiedad no tiene ningún efecto sobre el diseño.
+                            Para poder aplicarlo se necesita tener el atributo flex-wrap, que me permita verificar los ejes horizontales.
+                            Alinea verticalmente a los hijos cuando son multilínea */
+
+                            
+}
+                        /*% para los HIJOS */   
+
+.hijoFlex{
+
+    order: -1; /* por defecto, estan en 0. Es para 
+ 					que aparezca en un orden especifico (primero, segundo, etc...) */
+
+    flex-basis: 100%; /* reemplazaria al width o height .
+                        es el tamaño del elemento, pero solo me 
+                        indica un tamaño dependiendo el eje. 
+                        ES DECIR = 
+                        Si la direccion es ROW, la medida que trabaja es el width. 
+                        */
+
+    flex-grow: 2/* Esta propiedad define que porcion del espacio sobrante toma ese item 
+                cuando CRECE . 
+                Esta propiedad se configura con un valor numérico entero natural 
+                (no acepta negativos). 
+                Por defecto el valor viene configurado en "0" por lo tanto el elemento 
+                no crecerá de manera horizontal. 
+                Si este valor es configurado en 1 para todos los ítems, todos éstos 
+                crecerán de igual manera, por lo que ocuparan la misma cantidad de
+                    espacio dentro del contenedor.
+                Se lee como n veces mas grande
+                */;
+
+    flex-shrink: 3;/* ve quien se ACHICA 
+                    Define, CUÁNTO de si mismo se achica un elemento 
+                    uando no haya espacio suficiente. 
+                    Cuantas veces se achicara con respecto 
+                    a los demás. Si no anda, chequear el WRAP */
+
+    flex: 1 1 70%;
+
+        /* FLEX: Junta grow, shrink y basis
+        Es el atajo para definir:
+        1) Valor: Flex Grow
+        2) Valor: Flex Shrink
+        3) Valor: Flex Basis; */
+}
+
+
+
+/*% --- GRID  ----------------------------------- */
+    /* A grid container contains grid items. */
+
+ 	/*Grid se crea especificamente para hacer las estructuras de las webs. 
+ 	Para construirlas en su totalidad, integramente con ese metodo, el de GRILLA 
+ 	Flexbox se creo para ordenar los elementos, horizontal y verticalmente. Si bien,
+ 	 la funcionalidad es muy similar, es diferente la POTENCIA. 
+	Hace a grillas mejor que flexbox? No necesariamente, dependerá de nuestro sitio, 
+	el diseño y su complejidad. LOS VAMOS A COMBINAR. 
+	Trabajamos con un elemento PADRE principalmente*/
+
+                        /*% Unidades */   
+
+    /* 
+    > fr(fraction) 
+	son fracciones del espacio que no tiene un tamaño estatico
+
+	? grid-template-columns: 50px 2fr 3fr;
+	
+	. Este display tendra 3 columnas:
+		.col1: 50px
+		.col2: 2/5 del espacio restante
+		.col3: 3/5 del espacio restante
+
+	.si los mezclo, solo las unidades con fr representan su total
+
+	. puedo usar la medida ' auto ' si van a ser todas iguales.
+		/ auto auto auto = 1fr  1fr  1fr
+	. o usarla asi
+		
+
+    > min-content
+       ? grid-template-columns: min-content;
+
+    / Achica el ancho de la columna al minimo. Si tiene frases, agarra el ancho de la palabra mas larga y hace el que el ancho de la columna sea ese
+
+
+    > max-content
+        ? grid-template-columns: max-content;  
+
+    / Aplica el white-space: nowrap a la frase y el ancho de la columna toma el ancho de esa frase 'estirada'
+
+
+    */                    
+
+    .grid {
+		display: grid;
+		display: contents; /* se usa en un hijo GRID para que sus hijos (nietos del original) puedan usar la grilla del abuelo */
+		display: inline-grid;
+
+
+
+		/* luego la distribucion de columnas y filas EXPLICITAS*/
+
+		grid-template-columns: 300px 100px;/* tamanio de las columnas*//*2 columnas asi*/
+		grid-template-rows: 40px 100px; /* tamanio de las filas*//*aca son 2 filas*/
+
+
+
+		/* podemos usar un REPEAT para repetir muchas veces columnas y filas 
+			PARA GALERIAS DE IMAGENES*/
+
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+
+		grid-template-columns: repeat(12, 1fr); /* se puede hacer : 200px repeat(3, 100px)*/
+		grid-template-rows: (12, 1fr);
+
+		/*grid-template es una propiedad abreviada que combina 
+		grid-template-rows y grid-template-columns.
+
+		Por ejemplo, */grid-template: 50% 50% / 200px;/* creará una cuadrícula con 
+		dos filas que ocuparán el 50% del alto cada una, y una columna 
+		que será 200 píxeles de ancho.*/
+
+
+
+		/** grid AREAS */
+		/*Basicamente: Una o mas celdas, que forman un area rectangular. Combinando filas y columnas. 
+		Serie de ladrillos que se agrupan. (son de naturaleza rectangular, no se puede crear con forma de L o de T). 
+		NOS PERMITE: Darle NOMBRE a las areas (por ejemplo, HEADER) para poder hacer referencia a ese nombre y posicionar los elementos. 
+		ESTRUCTURA RARA
+		 SE HACE SI O SI CON CLASES 
+
+			Se pone en HTML y CSS */
+
+
+
+		/* 
+		.1. Estructuro el HTML con clases
+
+		/ <div class="jed"> HEADER </div>
+		/ <div class="lado"> ASIDE  </div>
+		/ <div class="mein" id="unico"> MAIN </div>
+		/ <div class="fut"> FOOTER</div>
+
+		.2. Indico en el PADRE las areas */
+
+		grid-template-areas: 
+							'jed jed jed'
+							'mein mein lado'
+							'fut fut fut' ;
+
+		/*
+        .3. Las aplicamos a los HIJOS*/
+
+
+	    /* en los HIJOS tengo que poner lo siguiente */
+
+		grid-area: jed;
+
+/*	grid.layoutit.com*/
+
+		/* puedo usar ESPACIOS */
+
+		grid-gap: 5px;
+		grid-column-gap: 5px ;
+		grid-row-gap: 5px;
+
+
+		/* ALINEANDO horizontalmente. Le saca el "stretch", que es el default*/
+		justify-items: stretch; /* start | end | center | stretch */
+
+		/* ALINEANDO veritcalmente. Le saca el "stretch", que es el default*/
+		align-items: stretch; /* start | end | center | stretch */
+
+
+		 /* puedo usar propiedades de flexbox */
+
+		 justify-content: space-between;
+
+		 align-content: space-around;
+
+/* para los HIJOS   */
+
+		justify-self:;
+
+
+		/* otra forma es marcar el inicio y final de cada hijo,
+			sea fila o columna */
+
+		grid-column-start: 1 ; /* aca marcamos la LINEA de la grilla donde empieza */
+		grid-column-end: 5; /* aca marcamos la LINEA de la grilla donde termina
+								puedo usar el span para escribir cuantos cuadros
+								quiero abarcar */
+		grid-column-end: span 4;
+
+		grid-column: 1 / span 5; /* modo RESUMIDO. Es la que va */
+		/* funciona igual para ROW */
+
+
+		/* mejor usar GRID AREA 
+		 grid-area admite cuatro valores separados por barras oblicuas:
+		  grid-row-start, grid-column-start, grid-row-end, seguido de grid-column-end.
+		  Un ejemplo de esto podría ser grid-area: 1 / 1 / 3 / 6;.*/
+		grid-area: rowstart / colstart / rowend / colend;
+
+
+		/* cambio el ORDEN interno 
+		Por defecto, el valor de order de todos los elementos es igual a 0, pero puede se
+		 establecido a cualquier valor positivo o negativo, de manera similar a z-index.
+		 asi, el mayor valor ira hacia el final*/
+
+		order: n; /* aca pongo un numero mayor a 0 asi lo desplazo hacia el final
+					en relacion a los que tienen el valor default, 0 */
+
+
+/*! PARA HACER RESPONSIVE CON GRID , UNA GALERIA DE IMAGENES por ejemplo  */					
+
+		/*? usar auto-fill y auto-fit  */
+
+		.grid {
+			display: grid;
+			grid-gap: 10px;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			/*> el auto fill genera columnas de 200px mientras pueda. Cuando achicamos la pantalla, va sacando columnas y por ende wrapeando el contenido. */
+
+			/*% El auto-fit en cambio, estira las columnas para que siempre ocupen el ancho de la pantalla.*/
+
+			/*> El minmax ayuda a poder usar el 1fr para que las columnas siempre ocupen el ancho del contenedor  */
+		  }
+		  
+		.grid > * {
+			background-color: green;
+			height: 200px;
+		  }
+
+		  /* * para para generar fotos con diferentes alturas */
+
+		  /*% hago una clase para card-wide, card-tall, card-square  */
+		  /*% el media query es para que no se rompa en pantallas de celu */
+
+		  @media screen and (min-width: 600px) {
+			  
+			  .card-tall {
+				  grid-row: span 2 / auto;
+			  }
+	
+			  .card-wide {
+				grid-column: span 2 / auto;
+		  }
+
+		}

@@ -1,0 +1,64 @@
+! ************
+!    GITHUB
+! ************
+
+? http://guides.beanstalkapp.com/version-control/common-git-commands.html
+
+es de Microsoft
+
+
+para logear, tengo que tener una carpeta con un COMMIT HECHO con GIT
+
+luego
+
+
+# git remote <command> <remote_name> <remote_URL>
+    > git remote add origin https://github.com/aleingercher/web-natyrocca.git
+
+
+# Verify new remote
+    > git remote -v
+
+ origin  https://github.com/user/repo.git (fetch)
+ origin  https://github.com/user/repo.git (push)
+
+
+
+Ahora pusheo mi repo a github
+    > git push -u origin master
+
+    o si quiero que mi "master" se llame "main"
+
+    > git branch -M main
+    > git push -u origin main
+
+
+Luego de la primera vez, pongo solo
+> git push
+, no hace falta poner el "origin main"
+
+
+TENGO QUE CHEQUEAR QUE MI MAIL SEA PUBLICO EN GITHUB
+(sino tira error)
+
+
+PARA SUBIR LA PAGINA
+
+GitHub nos permite publicar nuestros proyectos online. Para generar una GitHub page debemos: 
+
+1. Ir a los “Settings” de nuestro repositorio 
+2. Scrollear hasta abajo y  activar nuestro GitHub page
+3. Seleccionar qué rama queremos usar
+4. Guardar los cambios y GitHub cumplirá la función básica de cualquier otro Hosting.
+
+Importante: El proyecto solo debe ser de archivos estáticos, ningún archivo que requiera de BackEnd especial.
+
+
+SI TENGO QUE CAMBIAR el nombre o mover un archivo
+
+> git mv oldname newname
+
+
+PARA BAJAR DE LA PAGINA
+//         de donde / y de que rama
+> git pull origin main

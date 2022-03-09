@@ -1,0 +1,133 @@
+!TUTORIA coder
+
+! CONTACTO MIO CON Coderhouse
+    ? tutores@coderhouse.com
+
+! CONTACTO DEL Estudiantes
+    ? ayuda@coderhouse.com
+
+! problemas tecnicos o de la plataforma
+    ? it@coderhouse.com
+
+. La primera clase deberás presentarte.
+. Contarles del botón “mi tutor”
+. Liderar breakout rooms
+. Tomar asistencia a mitad de la clase desde la plataforma. Pedir alumnos que pongan sus nombres.
+    Si es el sistema el que no anda, escribir a :
+    ? it@coderhouse.com
+. Mandar ID de reunion si algun estudiante no pudo conectase
+. 24 hs para responder preguntas
+. Transparentar tus horarios de trabajo para estar disponible para el alumne
+
+. Apoyo por slack
+. After semanal (entre todos los tutores)
+
+!ROLES
+> Docente
+. dicta la clase
+. correcciones de proyecto final.
+. Armar las clases
+. Seguimiento a los tutores
+. Un afterclass por semana
+
+> Coordinador
+. Ayudar al Docente con el aula virtuaL. 
+. Suplir al docente O TUTOR en caso de que no pueda dictar la clase. 
+. Soporte del equipo de tutores
+------------------------------
+x fuera de la clase
+------------------------------
+. Armar espacios de tutoria par los estudiantes atrasados
+. Agitar el slack
+. Acompañar a los tutores nuevos en su afterclass
+. Elaborar reportes semanales del estado general de la camada al área de Educación de Coderhouse desde la plataforma.
+
+
+
+!HAY 3 tipos de desafios:
+* clase
+* entregables (obligatorios 1 por clase. Tienen 7 dias )
+
+* complementarios (optativos. Tienen 7 dias )
+    cada desafío complementario aprobado suma 1 punto para el top 10.
+    Solo recibiran UNA correccion
+
+% Entrega intermedia!
+. Hay que calificar cada entrega y reentrega.
+
+!Correcciones
+. Se corrige sobre el mismo archivo que entrega el alumno.
+. 72 hs para corregir entregables o intermedias
+. Los estudiantes cuentan con un plazo de entrega de 7 días y 7 dias extras para la reentrega luego de las correcciones.
+. Como tutores, puedan extender al estudiante la fecha prevista desde la plataforma en casos excepcionales.
+. Debo calificar con “bajo”, “correcto” u “óptimo” según corresponda.
+. Si hay reentrega, debo "revertir el aprobado" y luego recalificarlo.
+
+!RUBRICAS
+.  Conjunto de criterios y normas que sirven para evaluar el nivel de desempeño en una tarea.
+. Las rúbricas están dispuestas en una carpeta dentro de la carpeta compartida de cada camada, junto al material de clase.
+. Hay cuadros con criterios y 'puntajes':
+    . Idea del proyecto.
+    . Arquetipo de persona
+
+
+!Dudas
+. En vivo, responder en el momento.
+. Por slack, 24 hs de L a V
+
+!Estudiantes
+. Si un estudiante con beca incumple 4 veces con la presentación de sus desafíos, tendrá bloqueada la posibilidad de entregar y desde el área de Ayuda se comunicarán.
+. Cualquier duda respecto a un estudiante, mail a:
+    ? tutores@coderhouse.com .
+. Si sigue teniendo problemas, lo reporto desde la plataforma  desde la pestaña "seguimiento" para que Ayuda pueda idem.
+
+    > situaciones conflictivas
+    . Esto son diferencias entre tutor y estudiante.
+    . Se charlan uno a uno.
+    . Si esta descontento, puede escribir a 
+    ? ayuda@codrehouse.com
+    . Si no se resuelve, voy a la pestaña de seguimiento, y pongo que necesito soporte.
+
+    > por mala conducta
+    . Si es de un estudiante, se denuncia por la plataforma.
+    . Si es un docente o tutor, mail a
+        ? tutores@coderhouse.com
+
+
+!Ausencias
+En caso de no poder asistir a una clase en vivo, es muy importante que lo notifiques con un mínimo de 48 hs de anticipación a 
+    ? tutores@coderhouse.com
+ así como también al docente responsable de la camada y al resto del equipo de tutores de la camada. Los estudiantes que cada tutor tiene a cargo necesitan que alguien tome la asistencia y resuelva sus dudas durante la clase en vivo, por lo que en caso de ausentarse deben comunicarlo para poder delegar la responsabilidad de estos estudiantes para esa clase en otro tutor/docente.
+
+
+ !AGILIDAD
+
+
+ !plataforma
+
+ . Ingresar con usuario nuevo a:
+ ? plataforma.coderhouse.com/Ingresar
+
+ . VALORAR todas las clases
+
+ . Pasar ASISTENCIA a mitad de la clase.
+    Pestaña asistencia --> Tocar botoncito de abajo de la fecha.
+    Chequear que este bien lo que llena automaticamente el sistema.
+
+. Pestaña DESAFIOS. Si hay puntos rojos, tengo algo pendiente
+
+ !slack
+ . Nombrarme como [TUTOR] Ale
+
+ . 3 canales:
+    . todos
+    . Tutores y profe
+    . Solo alumnos y yo
+
+
+!afterclass
+. Anotarme desde la plataforma
+. Pedir keyhost al docente. Son 6 numeros. Pable de participantes --> Claim host
+
+Laura de tutorschool
+

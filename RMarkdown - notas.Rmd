@@ -1,0 +1,144 @@
+---
+title: "Clase 20 R Markdown prueba"
+author: "ale ingercher"
+date: "7/14/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,# message saca las ej de los chunks
+                      warning = FALSE # con esto saco los warnings del knit
+                      ) 
+```
+
+# Headers
+
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+esto se hace con '---'
+
+---
+
+Cheat Sheet Markdown [^1]
+
+---
+
+para hacer cursiva es con '_palabra_'
+_cursiva_
+
+para hacer negrita, '**se pone asi**'
+**negrita**
+
+los dos combinados es '**_asi se hace_**'
+**_like that_**
+
+---
+para hacer un link
+[Infobae](http://www.infobae.com)
+
+---
+
+para tachar '~~hago asi~~'
+
+~~tachado~~
+
+---
+Listas ordenadas
+
+1. Elemento 1
+  + Elemento 1-a
+  + Elemento 1-b
+2. Elemento 2
+3. Elemento 3
+
+
+Listas desordenadas
+
+* Elemento 1
+  + Elemento 1-a
+  + Elemento 1-b
+* Elemento 2
+* Elemento 3
+- Elemento 4
+
+---
+
+Imagenes!
+
+![texto abajo de la imagen](https://beneficios.unioninformatica.org/wp-content/uploads/2018/01/eant-escuela-argentina-nuevas-tecnologias-union-informatica-descuento-afiliados-3.jpg
+)
+
+<center>
+![](https://assets.kpmg/content/dam/kpmg/xx/images/2019/07/blue-colored-data-science-illustration.jpg/jcr:content/renditions/cq5dam.web.787.99999.jpg)
+
+```{r}
+nrow(iris)
+
+```
+El dataset de iris contiene `r nrow(iris)` registros
+
+```{r}
+a = round(mean(iris$Sepal.Length))
+
+```
+
+El promedio de la variable Sepal Length es de `r a`
+
+
+---
+Blockquotes / CITA (pone una barrita gris a la izquierda)
+
+> Shiny es un paquete disponible para programar
+>
+> Rstudio
+
+
+---
+Ecuaciones
+
+$$ y = (x + 1)^2 + 3 $$
+
+
+--- 
+Tablas
+
+Hora | Def
+---- | ----
+00-06 | Madrugada
+07-12 | Mañana
+
+---
+~~~
+Para escribir codigo
+~~~
+
+~~~
+SELECT * FROM TABLA WHERE...
+~~~
+
+
+---
+
+Para hacer notas al pie
+
+[^1]: [CheatSheet](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+
+---
+Para poner un video, hago click der en el video de youtube, codigo de insercion. Puedo cambiar la medida
+
+<iframe width="820" height="461" src="https://www.youtube.com/embed/FrX7tnM80M8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+```{r librerias}
+library(tidyverse)
+
+```
+

@@ -1,0 +1,701 @@
+Link para aprender
+https://github.com/agustinfiorde/Spring
+
+
+
+, SPRING
+Es un framework alternativo al JavaEE
+    . Spring se basa en el principio de Inversión de Control (IoC) o Patrón Hollywood («No nos llames, nosotros le llamaremos»)
+    > Spring es una implementación del patrón de diseño "front controller”.
+    , Usa inyeccion de dependencias
+        > Hay un  CONTROLADOR application-context.xml
+            que se encarga de inyectar a cada objeto el objeto que necesita
+             
+        / consiste que en lugar de que cada clase tenga que instanciar los objetos que necesite, sea Spring el que inyecte esos objetos, lo que quiere decir que es Spring el que creara los objetos y cuando una clase necesite usarlos se le pasaran (como cuando le pasas un parámetro a un método). 
+        / Los objetos se inyectaran mediante los métodos setters o mediante el constructor en el momento en el que se cree la clase
+
+        > Tipos de DI
+            .1 Constructor
+
+
+
+
+        /Spring a estas clases que van a ser inyectadas por el contenedor, las llama 
+
+    , Spring Beans.
+        Un Bean es una clase de Java que debe cumplir los siguientes requisitos:
+            • Tener todos sus atributos privados (private).
+            • Tener métodos set() y get() públicos de los atributos privados que nos interese.
+            • Tener un constructor público por defecto.
+
+    . o POJOs como objetos de negocio
+    . IDE --> Spring tool suite
+        / podemos instalarselo al vscode tambien
+
+    . Otras funcionalidades de Spring
+        • Core container: proporciona inyección de dependencias e inversión de control.
+        • Web: nos permite crear controladores Web, tanto de vistas MVC como aplicaciones
+        REST. Esto facilita en gran medida la programación basada en MVC (Modelo Vista
+        Controlador)
+        • Acceso a datos: abstracciones sobre JDBC, ORMs como Hibernate, sistemas OXM
+        (Object XML Mappers), JSM y transacciones.
+        • Instrumentación: proporciona soporte para la instrumentación de clases.
+        • Pruebas de código: contiene un framework de testing, con soporte p
+
+> Spring MVC
+Spring Web MVC es un sub-proyecto Spring que está dirigido a facilitar y optimizar el proceso creación de aplicaciones web utilizando el patrón Modelo Vista Controlador.
+    . Modelo representa los datos o información que maneja la aplicación web.
+    . Vista son todos los elementos de la Interfaz de Usuario.
+    . Controlador será el encargado manipular los datos en base a la interacción del usuario.
+
+, MAVEN
+Es una herramienta de soft para getsion de proyectos Java.
+    . Usa un POM (Project Object Model)
+        . Describe el proyecto
+        . Ayuda a importar sus dependencias
+        . Orden de construccion
+        . Tiene formato XML
+
+    . Sirve para empaquetar el proyecto
+    . Va a a buscar a la nube las dependencias que nosotros ponemos
+    . Es similar a gradle
+    . Es otro framework que permite laburar con Spring
+
+, Thymeleaf
+Es una biblioteca Java que implementa un motor de plantillas de XML/XHTML/HTML5
+Es un framework de templating que promete flexibilidad y adecuación a los
+nuevos estándares como HTML5. 
+    . Util para laburar con MVC
+    . Puede procesar cualquier archivo XML
+
+
+
+% CONCEPTOS
+    > MIME
+        Sirve para que el servidor y el cliente comuniquen el tipo de contenido que se envian.
+        Se usa con las extensiones de los archivos
+
+        > HTTP 
+            . los servidores web suelen escuchar request en el puerto 80
+        % request
+        3 partes
+            . accion
+            . cabeceras
+            . cuerpo del mensaje
+                parametros que envia el cliente al servidor 
+
+        % response
+            . Version HTTP con la que opera el servidor
+            . Codigo de respuesta
+                1... Informativo
+                2... aprobado
+                3... redireccionamiento
+                4... error del lado del cliente
+                5... error del lado del servidor
+
+            . cabeceras
+            . cuerpo del mensaje
+
+!--------------------------
+!        PASOS
+!--------------------------
+.0) Instalar MAVEN
+
+.0.1) Tambien cambiar el application.properties por application.yml y pegar esto
+. Reemplazar la url con la base de datos que relacione
+    spring:
+    mail: 
+        host: smtp.gmail.com
+        port: 587
+        properties:
+            mail:
+                smtp:              
+                    auth: true
+                    starttls:
+                        required: true
+                        enable: true
+    datasource: 
+        url: jdbc:mysql://localhost:3306/libreriaprueba?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
+        username: root
+        password: root
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        show-sql: true
+        hibernate:
+        ddl-auto: update
+        properties:
+        hibernate:
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect  
+    thymeleaf:
+        cache: false 
+    server:
+    error:
+        whitelabel:
+        enabled: false
+    servlet:
+        session:
+        cookie:
+            http-only: true
+        tracking-modes:
+        - cookie
+    logging.level.org.springframework.web: DEBUG      
+    logging.level.org.hibernate: ERROR
+
+.1) New Spring Starter Project
+
+    / start.spring.io
+
+    . Selecciono:
+        Java 8
+        Jar
+        Maven Project        
+
+    . Agrego dependencias. Sugeridas:
+        Spring Web --> Framework central
+        Thymeleaf --> para hacer dinamico el html
+        Spring Data JPA  --> persistencia. Convierte los objetos a tabla de datos
+        MySQL Driver
+        Java Mail Sender
+        Lombok.
+            / en las entidades le pones @data, y te hace solos los getters y setters
+
+        . Si quiero buscar otras dependencias luego, entro en:
+            % https://search.maven.org/
+
+    . GENERATE
+
+        Esto me genera un rar.
+        Lo abro. Tiene la M de Maven
+        El video YML es por si hay algun problema con el Login
+
+github.com/agustinfiorde/Spring
+
+
+
+En pom.xml van a estar todas nuestras dependendcias
+Esta relacionado con Maven
+
+.2) Descargo el .rar
+.3) Lo extraigo en una carpeta, y desde netbeans, Open Project de la carpeta
+
+
+.4)Si trae quilombo, abro el pom y en plugins agrego esto
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+
+o
+
+                <plugin >
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.19.1</version>
+                </plugin>
+
+o 
+
+                entrar a la carpeta de los repositorios y eliminar el repositorio "surefire"
+
+.4) click der en el proyecto --> Clean and Build
+
+.5) Abro el Workbench y creo la base de datos
+?       CREATE DATABASE libreria;
+
+.6) Configuro el YML
+
+.7) Voy a application.properties
+    Le completo los datos que tengo guaradados
+    Le cambio la extension a .yml o lo dejo en .properties.
+    La diferencia es que el YML va INDENTADO
+
+    Agarramos el archivo que nos pasa tonga, Cambiamos el url
+
+.8) Creo los packages:
+    com.libreriaRepaso.entidades
+        / Sirven para modelar los objetos
+    com.libreriaRepaso.repositorios
+        / persisten las entidades en la base de datos
+        / sirven como interfaces entre el modelo de objetos y la DB
+        / Se encargan del CRUD
+        / Simplifican las operaciones
+
+    com.libreriaRepaso.controladores
+    com.libreriaRepaso.servicios
+
+
+> .............................................................................
+.9) Creo mis ENTIDADES dentro de .entidades.  Y a cada una
+
+    . Agrego
+,       @Entity
+            / marco que es una entidad.
+            / es un objeto que quiero persistir de  manera permanente sus datos
+
+    . Agrego el codigo para que se autogenere un id unico cuando el repositorio PERSISTA la entidad
+,       @Id
+,       @GeneratedValue(generator = "uuid")
+,       @GenericGenerator(name = "uuid",strategy = "uuid2")
+        private String id;
+
+        / De que manera se va a almacenar esa fecha en la DB
+,       @Temporal(TemporalType.TIMESTAMP)
+        private Date alta;
+,       @Temporal(TemporalType.TIMESTAMP)
+        private Date baja;
+
+
+    . Planteo las relaciones.
+        / con el ejemplo de Usuarios 
+        / Zona. El usuario pertenece a una zona. O UNA zona contiene MUCHOS usuarios
+        / La mascota es de un usuario.
+
+/ desde Usuario
+,       @JoinColumn(name = "usuario", referencedColumnName = "id mascota")
+            / El Join column te ayuda a establecer las relaciones para las query
+
+        // MUCHOS usuarios pueden pertenecer a UNA zona
+,       @ManyToOne
+        private Zona zona;
+
+/ desde Mascota
+,       @ManyToOne
+        private Usuario usuario;
+
+        / puedo usar ENUMS
+
+        / desde Mascota
+        / Sexo seria un ENUM
+,       @Enumerated(EnumType.STRING) 
+        private Sexo sexo
+
+    . Creo sus getters y setters 
+
+/ desde Voto
+        / el voto tiene dos relaciones con mascota
+        / una la queorigina el voto, otra la que recibe
+        // MUCHOS votos pueden provenir de UNA mascota
+
+        @ManyToOne
+        private Mascota mascota1;
+    
+        @ManyToOne
+        private Mascota mascota2;
+
+.10) Creo los REPOSITORIOS dentro de un nuevo paquete edu.egg.tinder.repositorios donde van los repos de JPA
+
+/ Se cambia el CLASS por INTERFACE
+                                               /    Repo de mascota | Id es String
+,       @Repository                             
+        public interface MascotaRepo extends JpaRepository<Mascota, String>{
+                @Query("SELECT c FROM Mascota c WHERE c.usuario.id = :id")
+                public List<Mascota> buscarMascotasPorUsuario(@Param("id") String id);
+        }
+
+,       @Param("id") String id
+        / vincula ambos campos, el id de usuario con el parametro String que pase
+
+,        REPO.findById(Id).get();
+        / este metodo es propio de los repos para encontrar por Id
+
+
+
+.11) Creo los SERVICIOS en edu.egg.tinder.servicios 
+/ Tienen como objetivo llevar adelante la logica de negocios
+/ Adentro creo metodos que ejecuten la logica de negocio
+/ Aca arrancan las
+> VALIDACIONES
+
+,       @Service
+        public class UsuarioServicio
+
+        Uso:
+
+,       @Autowired
+        private UsuarioRepo usuarioRepo;
+            / para instanciar otras clases. Se encargal el servidor de aplicaciones
+
+,       @Transactional
+            / Se usa en los SERVICIOS
+            / para los metodos donde use el  .save de spring
+            // el transactional se usa para marcar el metodo, si se ejecuta sin excepeciones, se comittea a la DB. Sino se vuelve atras y no se aplica nada
+
+,       .save()
+        / Aqui utilizo un metodo para que el repositorio transforme este objeto en una o mas tablas de datos
+
+,       Optional<Usuario> respuesta = usuarioRepo.findById(id);
+        / Se usa para validar que el id de usuario sea el correcto. Es una herramienta de JPA. 
+,        if(respuesta.isPresent()){ PERSISTIR LA LA ENTIDAD} else { ERROR }
+
+Usuario
+..................
+    .a)  Tengo que permitir que se registre
+        / recibo datos de un FORM y los transformo en una entidad
+        @Service
+        public class UsuarioServicio {
+            
+            // el autowired me evita instanciar otras clases
+            @Autowired
+            private UsuarioRepo usuarioRepo;
+            
+            // la idea es transformar los datos recibidos del formulario a una entidad
+,           @Transactional
+            // el transactional se usa para marcar el metodo, si se ejecuta sin excepeciones, se comittea a la DB. Sino se vuelve atras y no se aplica nada
+            public void registrar(String nombre, String apellido, String email, String clave){
+
+                // asi voy validando todos los campos
+                if(nombre == null || nombre.isEmpty()) {throw new ErrorServicio("El nombre no puede ser nulo o vacio");}
+
+                Usuario usuario = new Usuario();
+                
+                usuario.setNombre(nombre);
+                usuario.setApellido(apellido);
+                usuario.setEmail(email);
+                usuario.setClave(clave);
+                
+                // uso el new Date() para poner la fecha actual
+                usuario.setAlta(new Date());
+                
+                usuarioRepo.save(usuario);
+                
+            }
+
+.12) Creo el paquete edu.egg.tinder.errores
+    / La idea es tener errores personalizados para diferenciar errores propios de los errores del sistema.
+    / Dentro creo la clase de ErrorServicio, por ejemplo
+    public class ErrorServicio extends Exception{
+
+    public ErrorServicio(String msn){
+        super(msn);
+    }
+}
+
+.13) Si tengo fotos, puedo generar una entidad nueva.
+    Cada mascota y cada Usuario, tendran una Foto
+
+    @Entity
+    public class Foto {
+
+        @Id
+        private String id;
+        
+        private String nombre;
+        // con esto asigno el formato de archivo a la foto
+        private String mime;
+//,     mime
+//      foto.setMime(archivo.getContentType()); se extrae con este comando
+        
+    ,    @Lob 
+        // es para carga de elementos grandes
+    ,   @Basic(fetch = FetchType.LAZY)
+        ! ASINCRONISMO! aca usamos esta notacion para decirle que la cargue SOLO cuando se lo pidamos con un get()
+        private byte[] contenido;
+    
+    }
+
+.14) Creo el servicio de Foto. Para manejar imagenes
+ Uso la clase
+,   MultipartFile
+    Para generar el archivo donde se almacenara la foto
+
+        public Foto guardar(MultipartFile archivo) throws ErrorServicio {
+            if(archivo != null) {
+                Foto foto = new Foto();
+                foto.setMime(archivo.getContentType());
+                foto.setNombre(archivo.getName());
+                foto.setContenido(archivo.getBytes());
+
+.15) Vinculo los servicios
+
+.16) Utilizamos el 
+,   Spring Security
+    para eso tengo que tener la dependencia en el pom
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+    El metodo
+,   loadUserByUsername
+    va a llamarse cuando el usuario quiera autentificarse en la plataforma
+    Si existe un usuario con ese email, le va a dar permiso a los modulos
+
+    .a) primero le digo a la clase que implemente UserDetailsService
+        @Service
+        public class UsuarioServicio implements UserDetailsService  {
+
+    .b) La misma clase, me pide que genere un metodo abstracto
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        // metimos el email porque es el nombre de usuario que utilizaremos
+        // con este email, buscamos en nuestar DB a ese usuario y lo queremos transformar a un usuario de Spring Security
+        Usuario usuario = usuarioRepo.buscarPorMail(email);
+        if(usuario != null){
+            
+            // la clase GrantedAuthority tiene los permisos que tiene el usuario
+            List <GrantedAuthority> permisos = new ArrayList<>();
+           
+           // Agrego permisos individuales a esta lista
+           GrantedAuthority p1 = new SimpleGrantedAuthority("MODULO_FOTOS");
+           GrantedAuthority p2 = new SimpleGrantedAuthority("MODULO_MASCOTAS");
+           GrantedAuthority p3 = new SimpleGrantedAuthority("MODULO_VOTOS");
+           permisos.add(p1);
+           permisos.add(p2);
+           permisos.add(p3);
+           
+           
+            // aca uso clases propias de Spring Security. Nos pide estos tres elementos. Usuario, Clave y LISTA de permisos
+            User user = new User(usuario.getEmail(), usuario.getClave(), permisos);
+            
+            return user;            
+        } else {
+            return null;
+    }
+
+    .c) Una vez hecho esto, en el TinderApplication pongo esto FUERA del main
+        @Autowired
+        private UsuarioServicio usuarioServicio;
+
+        @Autowired
+        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(usuarioServicio).passwordEncoder(new BCryptPasswordEncoder());
+        }
+
+        Este metodo
+    ,   ConfigureGlobal
+        le dice a Spring Security QUE servicio usamos para autentificar el usuario
+        Luego setea un encriptador de contraseñas
+
+    .d) Ahora volvemos al UsuarioServicio y le pasamos el encriptador al registrar() y modificar()
+            // este paso se hace si usamos spring security. Asi guardamos la clave encriptada
+            String encriptada = new BCryptPasswordEncoder().encode(clave);
+            usuario.setClave(encriptada);
+
+.17) Ahora configuramos el
+,      Mail Sender
+    en una nueva clase en .servicios
+
+    .a) Primero creo la clase
+        @Service
+        public class NotificacionServicio {
+
+            @Autowired
+            private JavaMailSender mailSender;
+            
+            @Async
+            // el hilo de ejecucion no se detiene cuando se ejecuta
+            public void enviar(String cuerpo, String titulo, String mail) {
+                SimpleMailMessage mensaje = new SimpleMailMessage();
+                mensaje.setTo(mail);
+                mensaje.setFrom("noreply@tinder-mascota.com");
+                mensaje.setSubject(titulo);
+                mensaje.setText(cuerpo);
+                
+                mailSender.send(mensaje);       
+                
+            }
+        }
+
+    .b) Luego vinculo el servicio en UsuarioService
+        // una vez registrado el usuario, le mandamos un mail de bienvenida
+        notificacionServicio.enviar("Bienvenido a esta app falopa!", "Tinder de mascotas ", usuario.getEmail());
+
+    .c) Luego, lo vinculo al proceso de votacion
+
+
+.18) Luego configuro los controllers. La info esta en el proyecto de tinder de mascotas
+
+.19) Para poder trabajar con un MultipartFile par manejar una foto por ejemplo
+
+
+
+> ..............................................................................
+ > REPOSITORIOS
+ Son componentes que se encargan de buscar, crear, modificar y eliminar objetos de la base de datos.
+ Simplifican las operaciones. No importa la base de datos que usemos, el repo se encarga de eso
+
+
+ > ..............................................................................
+ > CONTROLLERS
+ Son componentes que se encargan de buscar, crear, modificar y eliminar objetos de la base de datos.
+ Simplifican las operaciones. No importa la base de datos que usemos, el repo se encarga de eso
+
+ .1) Creo los html en la carpeta
+    % templates
+
+.2) Las otras carpetas, CSS, IMG, etc van a
+    % static
+! los css se linkean asi:  ./ = carpeta 'static'
+
+.3) Creo los controladores en 
+    %edu.egg.tinder.controladores
+
+    // le indica que es un controlador
+,   @Controller
+    // el RequestMapping le dice a que URL va a escuchar este controlador
+,   @RequestMapping("/")
+    public class PortalControlador {
+        
+        // esta etiqueta le dice que cuando entre a la barra, se va a ejecutar lo que este dentro del metodo
+        // debo hacer uno para cada pagina del sitio. Para cada URL
+,       @GetMapping("/")
+        public String index(){
+            // esta es la vista que quiero que se vea cuando entre a
+            return "index.html";
+        }
+
+
+        //, ModelMap modelo
+        // el modelo lo vamos a usar para enviar el mensaje de error a la pantalla.
+        // Serviria para relacionarnos desde el MODELO hacia la VISTA
+        
+        //, @RequestParam
+        // Para las peticiones post, voy a usar la etiqueta en CADA parametro
+        // esta es para metodos post. Suelen ser formularios. Va a recibir parametros.
+        // los nombres de estos parametros deben ser iguales al del atributo name del form
+,       @PostMapping("/registrar")
+        public String registrar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String clave, @RequestParam String clave2){
+            try {
+                usuarioServicio.registrar(null, nombre, apellido, email, clave);
+            } catch (ErrorServicio ex) {
+                // desde aca, con el metodo .put
+                modelo.put("error", ex.getMessage());
+                java.util.logging.Logger.getLogger(PortalControlador.class.getName()).log(Level.SEVERE, null, ex);
+
+            // luego devuelvo los campos que ya lleno el usuario, para que no tenga qu hacer todo de vuelta
+            modelo.put("nombre", nombre);
+            modelo.put("apellido", apellido);
+            modelo.put("email", email);
+            modelo.put("clave", clave);
+            modelo.put("clave2", clave2);
+                return "registro.html";
+            }
+            return "redirect:/";
+        }
+
+
+    }
+
+ > ..............................................................................
+ > MODEL
+Es la forma que tenemos para comunicar al modelo con las vistas
+En el controller, se instancia como parametro en los GetMapping, un ModelMap
+
+    @GetMapping("/registro")
+    // mando un ModelMap para enviar la lista de zonas a la vista
+    public String registro(ModelMap modelo) {
+        // esta es la vista que quiero que se vea cuando entre a
+        
+        // busco las zonas en la DB mediante el metodo del repo
+        List<Zona> zonas = zonaRepo.findAll();
+        
+        // con el modelMap, mando esa lista para la vista. 
+        //         ("KEY", VALUE) 
+        modelo.put("zonas", zonas);
+        
+        return "registro.html";
+    }
+
+
+
+ > ..............................................................................
+ > THYMELEAF
+ https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values
+
+.1) Al usar la clase ModelMap desde spring, puedo usar Thymeleaf desde los html
+    . Tengo que agregarle esta linea a la etiqueta de html
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+.2) Pongo en el html etiquetas con atributos de th:. Como la siguiente
+//            <!-- esta linea se relaciona con el controller mediante el ModelMap
+//           Le digo que si encuentra un error, se muestre -->
+            <p th:if=${error != null} th:text=${error}></p>
+            
+, ETIQUETAS
+//<option th:each=" zona : ${zonas}" th:value=${zona.id} th:text="${zona.nombre}">
+
+>   th:value=${variable}
+    // con value mando variables hacia el modelo
+
+>   th:each=" zona : ${zonas}"
+    // el each hace un foreach del array entre llaves, y da a cada elemento el valor zona
+    // el dato ${zonas} lo saca del model. Lo envio desde el controller, con un GetMapping pasandole el model como parametro
+
+>   th:text="${zona.nombre}"
+    // es el valor que se muestra en el html. Puedo usar variables asi, con llaves
+
+ > ..............................................................................
+ > VISTAS
+
+ . En las paginas que tenga formularios:
+
+ Dentro de un form, cuando apriente el boton de submit, se va a ejecutar al action de la cabecera.
+ Deberia verse algo asi. La accion /registrar, se va a ejecutar con el metodo post
+ Luego debo ir al controller y generar un @PostMapping("/registrar")
+?    <form class="row g-3" action="/registrar" method="post">
+        // la info que complete en este input, se enviara almacenada en la variable
+                                                                                    > nombre
+?       <input type="text" class="form-control" id="inputNombre" name="nombre">
+
+
+ > ..............................................................................
+ > SPRING SECURITY
+. Hay que crear una clase en la carpeta principal con esta info
+
+package edu.egg.tinder;
+
+import edu.egg.tinder.servicios.UsuarioServicio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    @Qualifier("usuarioServicio")
+    private UsuarioServicio usuarioServicio;
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(usuarioServicio).passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        // esta linea en teoria me habilita a hacer post requests sin seguridad
+        http.cors().and().csrf().disable();
+
+
+        http.headers().frameOptions().sameOrigin().and()
+                .authorizeRequests()
+                .antMatchers("/css/", "/js/", "/img/*")
+                .permitAll()
+                .and().formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("logincheck")
+                .usernameParameter("email")
+                .passwordParameter("clave")
+                .defaultSuccessUrl("/index")
+                .permitAll()
+                .and().logout()
+                .logoutUrl("logout")
+                .logoutSuccessUrl("/")
+                .permitAll(); 
+    }
+}
