@@ -9,3 +9,6 @@ Una vez cada tanto
 
     Ledger   
 a record of money received and paid
+
+    Slums
+Villas

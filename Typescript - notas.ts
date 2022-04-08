@@ -29,14 +29,18 @@ $ tsc -w (o tsc --watch)
 let vacio = undefined
 /*  
 
-.   ARGUMENTOS OPCIONALES 
-    Los parametros opcionales se declaran asi
+.   ARGUMENTOS OPCIONALES y DEFAULT
+    Opcionales:
         parametro?: tipo
+
+    Default
+        parametro: tipo = valor
 */
 const fullName = (firstName: string, lastName?: string) => {}; // OK . Aca el opcional es el ultimo
 const fullName = (firstName: string, lastName?: string, upper: boolean = false) => {}; // OK . Aca al poner un default, lo hace opcional al ultimo argumento
 
 const fullName = (firstName?: string, lastName: string) => {}; // WRONG . Aca el opcional no es el ultimo. Esto no esta permitido
+
 
 
 /*  
@@ -45,19 +49,20 @@ const fullName = (firstName?: string, lastName: string) => {}; // WRONG . Aca el
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 PRIMITIVOS:
-    String
-    Number
-    Boolean
-    Null o Undefined:
+    string
+    number
+    boolean
+    null o Undefined:
         . Para que pueda usar null como valor booleano: "strictNullChecks": false,     
-    Symbol
+    symbol
     VOID:
         . Es lo que retorna una funcion sin return implicito
         . Evalua a undefined
 
 COMPUESTOS:
-    Objetos literales
-    Funciones
+    Object
+    Function
+        */ let myFunction: (x: number, y: number)=> number;/*  
     Clases
     Arreglos
     
@@ -102,9 +107,6 @@ Inferir tipos
 
 Al declarar una constante, estoy declarando un nuevo tipo
 La idea es declarar nosotros mismos el tipo de dato
-
-
-
 
 */
 
