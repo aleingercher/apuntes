@@ -22,6 +22,25 @@ $ tsc -w (o tsc --watch)
 . Al poner el tipo, ayuda con el intellisense
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            VARIOS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+. Por defecto, undefined es asignable a una variable de tipo null.
+*/
+let vacio = undefined
+/*  
+
+.   ARGUMENTOS OPCIONALES 
+    Los parametros opcionales se declaran asi
+        parametro?: tipo
+*/
+const fullName = (firstName: string, lastName?: string) => {}; // OK . Aca el opcional es el ultimo
+const fullName = (firstName: string, lastName?: string, upper: boolean = false) => {}; // OK . Aca al poner un default, lo hace opcional al ultimo argumento
+
+const fullName = (firstName?: string, lastName: string) => {}; // WRONG . Aca el opcional no es el ultimo. Esto no esta permitido
+
+
+/*  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         TIPOS DE DATOS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
