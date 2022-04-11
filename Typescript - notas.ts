@@ -61,8 +61,10 @@ PRIMITIVOS:
 
 COMPUESTOS:
     Object
-    Function
-        */ let myFunction: (x: number, y: number)=> number;/*  
+    Function   defino asi el tipo: 
+        */ let myFunction: (x: number, y: number)=> number = (x,y)=>{
+            return x + y;
+        };/*  
     Clases
     Arreglos
     
@@ -101,6 +103,7 @@ PROPIOS DE TYPESCRIPT:
         const hero: [string,number] = ['Dr Strange', 100]
         const heroTrupla: [string, number, boolean] = ["Dr Strange", 100, true];
 /* 
+..........................................................................
 
 Inferir tipos
 ....................
@@ -120,6 +123,35 @@ La idea es declarar nosotros mismos el tipo de dato
 
 
 /* 
+Personalizados
+....................
+
+Se definen
+
+type Nombre = {...}
+*/
+
+type Hero = {
+    name: string;
+    age?: number;
+    powers: string[];
+    getName?: () => string;
+};
+
+let flash: Hero = {
+  name: "Barry Allen",
+  age: 24,
+  powers: ["Super velocidad", "Viajar en el tiempo"],
+  getName() {return this.name}
+};
+
+let superman: Hero = {
+    name: "Clark Kent",
+    age: 34,
+    powers: ["Super velocidad", "Super fuerza"],
+  };
+
+/* 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             CASTEO
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,8 +159,42 @@ La idea es declarar nosotros mismos el tipo de dato
 
 let avenger: any = 'Dr. Strange';
 
-// para que me muestre el intelliJ, puedo decirl que lo trate como string, para que muestre la ayuda
+// para que me muestre el intelliSense, puedo decirle que lo trate como string, para que muestre la ayuda
 
 console.log( avenger.charAt(0) ) // WRONG
 console.log( ( avenger as string ).charAt(0) ) // OK
 console.log( <number>avenger.charAt(0) ) // OK pero mas feo
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            TS.CONFIG
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Los campos que estan comentados no estan activos. Es decir, tienen un valor recomendado, pero no es un default. Si queremos que actuen, hay que descomentarlos.
+ 
+{
+"sourceMap": true,   
+    . Create source map files for emitted JavaScript files.
+    . Sirve para poder debuguear correctamente y que por ejemplo un console.log te muestre en que linea esta del archivo.ts
+
+"removeComments": true,    
+    . Remueve los comentarios del archivo JS
+
+"outFile": "./main.js",
+    . Specify a file that bundles all outputs into one JavaScript file. If `declaration` is true, also designates a file that bundles all .d.ts output.
+    . Sirve basicamente para que no gener un archivo .js por cada .ts
+
+
+},
+  "exclude": [
+      "nombre_carpeta_a_excluir"
+            . Aca pongo el path de las carpetas que quiero que no me autogenere el .js. El node_modules ya lo tiene por defecto
+  ],
+  "include": [
+      "nombre_carpeta_a_INcluir"
+            . SOLO LAS CARPETAS QUE ESTEN ACA VAN A INCLUIRSE. O sea, mucho cuidado con esta propiedad
+  ]
+
+
+
+ */
