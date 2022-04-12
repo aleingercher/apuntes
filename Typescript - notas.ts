@@ -121,6 +121,17 @@ La idea es declarar nosotros mismos el tipo de dato
     console.log(a)
 })()
 
+/* 
+
+Desestructuracion
+....................
+
+Puedo llamar un objeto destructurado como argumento y pasarle el tipo para que complete el intelliSense
+*/
+const printAvenger = ({ironman, ...rest}: Avengers) => {
+    console.log(ironman, rest.vision)
+}
+
 
 /* 
 Personalizados
@@ -165,6 +176,118 @@ console.log( avenger.charAt(0) ) // WRONG
 console.log( ( avenger as string ).charAt(0) ) // OK
 console.log( <number>avenger.charAt(0) ) // OK pero mas feo
 
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    CLASSES en JAVASCRIPT ES6
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Un ejemplo bobo de como funciona las clases en JS. 
+Sin TS es un bardo...
+
+Accesibilidad de las propiedades:
+    Públicas
+    Privadas
+    Protegidas
+
+Métodos de las clases que pueden ser:
+    Públicos
+    Privados
+    Protegidos
+
+Herencia:
+ */
+
+class Avenger {
+    name;
+    power;
+
+    constructor(name, power) {
+        this.name = name,
+        this.power = power;
+    }
+    
+}
+
+class FlyingAvenger extends Avenger{
+    flying;
+
+    constructor( name, power) {
+        super(name, power);
+        this.flying = true;
+    }
+}
+
+const hulk = new Avenger('Bruce Banner', 'pegar');
+const falcon = new FlyingAvenger('Falcon', 'volar');
+
+console.log(hulk)
+console.log(falcon)
+
+
+/* 
+
+1. Crear clases en TypeScript 
+*/
+    // class Avenger {
+    //     private name: string;
+    //     public team: string;
+    //     public realName?: string;
+    //     static avgAge: number = 35;
+
+    //     constructor(name: string, team: string, realName?: string){
+    //         this.name = name;
+    //         this.team = team;
+    //         this.realName = realName;
+    //     }
+    // }
+
+    class Avenger {
+        static avgAge: number = 35;
+
+        static getAvgAge() {
+            // aca me refiero al nombre de la clase
+            return this.name; // Avenger
+        }
+
+        constructor(
+        private name: string,
+        private team: string,
+        public realName?: string
+        ) {}
+    }
+
+// HERENCIA
+
+
+    class Xmen extends Avenger {
+        constructor(
+            //tengo que crear los parametros que le paso al super antes que nada 
+            name: string,
+            realName: string,
+            public isMutant: boolean = true,
+        ){
+            super(name, realName); // lo primero que tengo que llamar. El super()
+            console.log('XMENNNNN')
+        }
+// GETTER
+        get fullName() {
+            return `${ this.name } - ${ this.realName }`
+        }
+
+// Llamar funciones del padre, desde los hijos
+        getFullNameDesdeXMEN() {
+            console.log( super.getFullName())
+        }
+    }
+/* 
+
+
+
+Setters
+Métodos y propiedades estáticas
+Clases abstractas
+Constructores privados.
+
+*/
 /* 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             TS.CONFIG
