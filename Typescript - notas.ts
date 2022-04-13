@@ -1,4 +1,16 @@
 /* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Acerca de
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    documentacion
+    https://www.typescriptlang.org/
+
+    . Creado en 2012 por Microsoft
+    . Es un super set de Javascript
+    . Al poner el tipo, ayuda con el intellisense
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         comandos consola
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -12,14 +24,14 @@ $ tsc --init
 $ tsc
     transpila todos los archivos
 
+$ tsc fileName.ts
+    transpila el archivo especifico
+
+$ tsc --noEmitOnError fileName.ts
+    SOLO transpila si NO hay ERRORES el archivo especifico
+
 $ tsc -w (o tsc --watch)   
     Inicia el observer para que vaya transpilando en vivo
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            VENTAJAS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-. Al poner el tipo, ayuda con el intellisense
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             VARIOS
@@ -41,7 +53,41 @@ const fullName = (firstName: string, lastName?: string, upper: boolean = false) 
 
 const fullName = (firstName?: string, lastName: string) => {}; // WRONG . Aca el opcional no es el ultimo. Esto no esta permitido
 
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            TS.CONFIG
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Los campos que estan comentados no estan activos. Es decir, tienen un valor recomendado, pero no es un default. Si queremos que actuen, hay que descomentarlos.
+ 
+{
+"sourceMap": true,   
+    . Create source map files for emitted JavaScript files.
+    . Sirve para poder debuguear correctamente y que por ejemplo un console.log te muestre en que linea esta del archivo.ts
+
+"removeComments": true,    
+    . Remueve los comentarios del archivo JS
+
+"outFile": "./main.js",
+    . Specify a file that bundles all outputs into one JavaScript file. If `declaration` is true, also designates a file that bundles all .d.ts output.
+    . Sirve basicamente para que no gener un archivo .js por cada .ts
+
+"noEmitOnError": true,                                   
+    . No podes compilar si hay errores
+
+},
+  "exclude": [
+      "nombre_carpeta_a_excluir"
+            . Aca pongo el path de las carpetas que quiero que no me autogenere el .js. El node_modules ya lo tiene por defecto
+  ],
+  "include": [
+      "nombre_carpeta_a_INcluir"
+            . SOLO LAS CARPETAS QUE ESTEN ACA VAN A INCLUIRSE. O sea, mucho cuidado con esta propiedad
+  ]
+
+
+
+ */
 
 /*  
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -241,10 +287,14 @@ console.log(falcon)
     // }
 
     class Avenger {
+// METODOS ESTATICOS
+        // los metodos estaticos son comunes a todas las instancias de esta clase.
+        // se llaman:
+        //      Avenger.avgAge
         static avgAge: number = 35;
 
         static getAvgAge() {
-            // aca me refiero al nombre de la clase
+            // aca me refiero al nombre de la clase en si. O sea Avenger
             return this.name; // Avenger
         }
 
@@ -269,55 +319,154 @@ console.log(falcon)
             console.log('XMENNNNN')
         }
 // GETTER
-        get fullName() {
+        get fullName(): string {
             return `${ this.name } - ${ this.realName }`
         }
 
-// Llamar funciones del padre, desde los hijos
+// SETTER        
+        // no lleva un type!
+        set fullName(name: string) {
+
+            // puedo agregarle validaciones
+            if(name.length < 3) {
+                throw new Error('El nombre debe contener mas de 3 letras')
+            }
+
+            this.name = name;
+        }
+
+        // Lo uso de esta manera:
+        //  wolverine.fullName = 'Jose Armando';
+        // Puedo hacer una nueva funcion en base a la anterior
+        // Llamar funciones del padre, desde los hijos
         getFullNameDesdeXMEN() {
             console.log( super.getFullName())
+        }
+
+        // O sobreescribir la anterior
+        get fullName(): string {
+            return super.getFullName() +  ' funcion sobreescrita'
         }
     }
 /* 
 
-
-
-Setters
-Métodos y propiedades estáticas
-Clases abstractas
-Constructores privados.
-
-*/
-/* 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            TS.CONFIG
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Los campos que estan comentados no estan activos. Es decir, tienen un valor recomendado, pero no es un default. Si queremos que actuen, hay que descomentarlos.
- 
-{
-"sourceMap": true,   
-    . Create source map files for emitted JavaScript files.
-    . Sirve para poder debuguear correctamente y que por ejemplo un console.log te muestre en que linea esta del archivo.ts
-
-"removeComments": true,    
-    . Remueve los comentarios del archivo JS
-
-"outFile": "./main.js",
-    . Specify a file that bundles all outputs into one JavaScript file. If `declaration` is true, also designates a file that bundles all .d.ts output.
-    . Sirve basicamente para que no gener un archivo .js por cada .ts
-
-
-},
-  "exclude": [
-      "nombre_carpeta_a_excluir"
-            . Aca pongo el path de las carpetas que quiero que no me autogenere el .js. El node_modules ya lo tiene por defecto
-  ],
-  "include": [
-      "nombre_carpeta_a_INcluir"
-            . SOLO LAS CARPETAS QUE ESTEN ACA VAN A INCLUIRSE. O sea, mucho cuidado con esta propiedad
-  ]
-
-
-
+// CLASES ABSTRACTAS
+    // sirven para que otras clases implementen lo que yo quiero.
+    // NO se instancia
+    // Las clases que la extienden, son tambien del tipo Mutante en este caso
  */
+    abstract class Mutante {
+        constructor(
+            public name: string,
+            public realName: string
+        ){}
+
+        // este metodo SI o SI va a tener que ser implementado
+        abstract superPower(): string ;
+    }
+
+    class XMEN extends Mutante { 
+        // metodo obligado, por ser abstracto en la superclase
+        superPower(): string {
+            console.log(' poderes del BIEN ')
+        }
+
+        salvarMundo() {
+            return 'Mundo a salvo'
+        }
+    }
+
+    class Villain extends Mutante { 
+        // metodo obligado, por ser abstracto en la superclase
+        superPower(): string {
+            console.log(' poderes del MAL ')
+        }
+
+        conquistarMundo() {
+            return 'mundo conquistado'
+        }
+    }
+
+    const wolverine = new XMEN('Wolverine', 'Logan')
+
+    const magneto = new Villain('Magneto', 'Magnus') 
+
+    console.log( wolverine)
+    console.log( magneto)
+
+    const printName = ( character: Mutante ) => {
+        console.log(character.name)
+    }
+
+    printName(magneto)
+
+// CONSTRUCTOR PRIVADO
+    // sirve para manejar singletons
+    // no se esta utilizando demasiado ahora
+    class Apocalipsis {
+
+        static instance: Apocalipsis;
+
+        // este constructor solo se podra usar desde la instancia
+        private constructor(
+            public name: string
+        ){}
+
+        static callApocalipsis(): Apocalipsis {
+            if( !Apocalipsis.instance) {
+                Apocalipsis.instance = new Apocalipsis('Nombre de apocalipsis');
+            }
+            return Apocalipsis.instance;
+        }
+
+        changeName( newName: string ): void {
+            this.name = newName;
+        }
+    }
+
+    const apocalipsis1 = Apocalipsis.callApocalipsis()
+    const apocalipsis2 = Apocalipsis.callApocalipsis()
+    const apocalipsis3 = Apocalipsis.callApocalipsis()
+
+    // apocalipsis1.changeName('Xavier')
+
+    console.log(apocalipsis1, apocalipsis2, apocalipsis3)
+
+    /* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        INTERFACES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // NO son instanciables. Se pasan como un type
+    // La diferencia es que PUEDEN EXPANDIRSE
+    // NO tiene una representacion fisica en JS (como el tipo)
+    // NO suelen usarse para metodos. Si necesitamos pasar un metodo, mejor utilizar una clase
+    // Se pueden implementar o usarse como un type
+    */
+
+    interface XMEN {
+        name: string,
+        realName: string,
+        mutantPower( id: number ): string
+    }
+
+    interface Human {
+        age: number;
+    }
+
+// IMPLEMENTS
+    class Mutant implements XMEN, Human {
+        public age: number;
+        public name: string;
+        public realName: string;
+
+        mutantPower(id: number): string {
+            return ''
+        }
+    }
+    
+// COMO UN TYPE    
+      let wolverine: Mutant = {
+        name: "Wolverine",
+        age: 24,
+        realName: 'Logan',
+      };
