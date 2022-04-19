@@ -1,12 +1,54 @@
-Link para aprender
+Links
+https://spring.io
 https://github.com/agustinfiorde/Spring
+
+**************************************************************************
+JAVA 11. Video de Chad Darby
+--------------------------------------------------------------------------
+https://repo.spring.io/ui/packages          //bajar paquetes
+
+    Instalacion
+~~~~~~~~~~~~~~~~~~~~
+. JDK  https://www.oracle.com/java/technologies/downloads/#java18
+. Tomcat https://tomcat.apache.org/download-90.cgi (installer for windows)
+. JAR files https://repo.spring.io/ui/repos/tree/General/libs-release/org/springframework/spring/5.3.9/spring-5.3.9-dist.zip
+    1. Copiar los archivos JAR dentro de la carpeta 'lib' y ponerlas en una homonima en nuestro proyecto.
+    2. Click der en la carpeta del proyecto:
+        propiedades > Java Build Path > Libraries > Classpath > Add JARS
+    3. Seleccionar todos los .JAR que copiamos recien APPLY AND CLOSE
+
+
+Spring development process
+--------------------------
+1. Configurar spring Beans
+    . applicationContext.xml
+
+2. Crear spring container
+    . Mas conocido como:
+        ApplicationContext
+3. Recuperar Beans del Container
+
+
+Inversion of Control??
+----------------------
+• SPRING CONTAINER: 
+
+
+***************************************************************************
+
 
 
 
 , SPRING
-Es un framework alternativo al JavaEE
+
+    . Programacion declarativa con AOP (Aspect Orientated Programming)
+
+    .Es un framework alternativo al JavaEE y EJB
+
     . Spring se basa en el principio de Inversión de Control (IoC) o Patrón Hollywood («No nos llames, nosotros le llamaremos»)
-    > Spring es una implementación del patrón de diseño "front controller”.
+
+    . Spring es una implementación del patrón de diseño "front controller”.
+
     , Usa inyeccion de dependencias
         > Hay un  CONTROLADOR application-context.xml
             que se encarga de inyectar a cada objeto el objeto que necesita
@@ -17,9 +59,6 @@ Es un framework alternativo al JavaEE
         > Tipos de DI
             .1 Constructor
 
-
-
-
         /Spring a estas clases que van a ser inyectadas por el contenedor, las llama 
 
     , Spring Beans.
@@ -29,20 +68,27 @@ Es un framework alternativo al JavaEE
             • Tener un constructor público por defecto.
 
     . o POJOs como objetos de negocio
+        (Plain-Old-Java-Objects)
     . IDE --> Spring tool suite
         / podemos instalarselo al vscode tambien
 
     . Otras funcionalidades de Spring
-        • Core container: proporciona inyección de dependencias e inversión de control.
+        • SPRING CONTAINER: 
+            proporciona inyección de dependencias e inversión de control.
+
         • Web: nos permite crear controladores Web, tanto de vistas MVC como aplicaciones
         REST. Esto facilita en gran medida la programación basada en MVC (Modelo Vista
         Controlador)
+
         • Acceso a datos: abstracciones sobre JDBC, ORMs como Hibernate, sistemas OXM
         (Object XML Mappers), JSM y transacciones.
+
         • Instrumentación: proporciona soporte para la instrumentación de clases.
+
         • Pruebas de código: contiene un framework de testing, con soporte p
 
 > Spring MVC
+
 Spring Web MVC es un sub-proyecto Spring que está dirigido a facilitar y optimizar el proceso creación de aplicaciones web utilizando el patrón Modelo Vista Controlador.
     . Modelo representa los datos o información que maneja la aplicación web.
     . Vista son todos los elementos de la Interfaz de Usuario.
@@ -75,7 +121,7 @@ nuevos estándares como HTML5.
         Sirve para que el servidor y el cliente comuniquen el tipo de contenido que se envian.
         Se usa con las extensiones de los archivos
 
-        > HTTP 
+    > HTTP 
             . los servidores web suelen escuchar request en el puerto 80
         % request
         3 partes
@@ -699,3 +745,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll(); 
     }
 }
+
+

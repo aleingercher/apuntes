@@ -361,7 +361,7 @@ console.log(falcon)
             public realName: string
         ){}
 
-        // este metodo SI o SI va a tener que ser implementado
+        // este metodo SI o SI va a tener que ser definido en el hijo
         abstract superPower(): string ;
     }
 
@@ -440,6 +440,7 @@ console.log(falcon)
     // La diferencia es que PUEDEN EXPANDIRSE
     // NO tiene una representacion fisica en JS (como el tipo)
     // NO suelen usarse para metodos. Si necesitamos pasar un metodo, mejor utilizar una clase
+    // si paso un metodo, este se debe implementar obligatoriamente
     // Se pueden implementar o usarse como un type
     */
 
