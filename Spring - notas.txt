@@ -7,8 +7,10 @@ JAVA 11. Video de Chad Darby
 --------------------------------------------------------------------------
 https://repo.spring.io/ui/packages          //bajar paquetes
 
-    Instalacion
+
+Instalacion
 ~~~~~~~~~~~~~~~~~~~~
+
 . JDK  https://www.oracle.com/java/technologies/downloads/#java18
 . Tomcat https://tomcat.apache.org/download-90.cgi (installer for windows)
 . JAR files https://repo.spring.io/ui/repos/tree/General/libs-release/org/springframework/spring/5.3.9/spring-5.3.9-dist.zip
@@ -16,22 +18,165 @@ https://repo.spring.io/ui/packages          //bajar paquetes
     2. Click der en la carpeta del proyecto:
         propiedades > Java Build Path > Libraries > Classpath > Add JARS
     3. Seleccionar todos los .JAR que copiamos recien APPLY AND CLOSE
+. Configurar para que muestre un logueo mas verboso
+    1. Importar el MyLoggerConfig.java
+    2. Modificar el applicationContext
 
 
 Spring development process
 --------------------------
-1. Configurar spring Beans
-    . applicationContext.xml
 
-2. Crear spring container
-    . Mas conocido como:
-        ApplicationContext
-3. Recuperar Beans del Container
+public static void main(String[] args) {
+
+		// 1. Cargo el spring config file
+		ClassPathXmlApplicationContext context = 
+				new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		// 2. traigo el bean del container. 
+        //      la interface se usa como un tipo, para verificar que sea el Bean correcto
+
+                                          bean id  ,  interface
+		Coach theCoach = context.getBean("myCoach", Coach.class);
+		
+		// 3. Llamo a los metodos de los Bean
+		System.out.println(theCoach.getDailyWorkout());
+		
+		// close context
+		context.close();
+	}
 
 
-Inversion of Control??
-----------------------
-• SPRING CONTAINER: 
+Inyeccion de dependencias
+--------------------------
+1) constructor injection
+
+.clase
+    //  Clase que usa la interface HappyFortuneService
+	public TrackCoach(FortuneService fortuneService) {
+		super();
+		this.fortuneService = fortuneService;
+	}
+
+
+
+. applicationContext.xml
+
+    <bean id="myFortune"
+            class="com.luv2code.springdemo.HappyFortuneService"
+    ></bean>
+        
+    <bean id="myCoach" class="com.luv2code.springdemo.TrackCoach"> 
+        
+        <!-- set up constructor injection -->
+        <constructor-arg ref="myFortune"></constructor-arg>
+        
+    </bean>
+
+2) setter injection
+
+a) crear setters para luego inyectar
+.main
+
+    // retrieve bean from spring container                   uso una CLASE que implenta la interfaz, asi tengo todos los metodos
+	CricketCoach theCoach = context.getBean("myCricketCoach", CricketCoach.class);
+    
+.applicationContext
+
+    <bean id="myCricketCoach"
+    	class="com.luv2code.springdemo.CricketCoach">
+    	
+   		<!-- set up setter injection.
+   		Con esta anotacion, va a llamar al setFortuneService -->
+    	<property name="fortuneService" ref ="myFortune"></property>
+    	
+		<!-- Inject literal values, llaman a sus setters -->
+		<property name="emailAddress" value="mail@mail.com"></property>
+		<property name="team" value="racing club"></property>
+    </bean>
+
+.clase
+    private String emailAddress;
+    private String team;
+    
+    public void setEmailAddress(String emailAddress) {
+        System.out.println("inside setter Email");
+        this.emailAddress = emailAddress;
+    }
+
+    public void setTeam(String team) {
+        System.out.println("inside setter Team");
+        this.team = team;
+    }
+
+************************
+        BEANS 
+************************
+
+<bean 
+    id="myCoach" 
+    class="com.luv2code.springdemo.TrackCoach"
+    scope="prototype" 
+    init-method="methodNameForInit"  // los metodos no deben tener argumentos, y devolver void
+    destroy-method="methodNameForDestroying"> 
+        
+        <!-- set up constructor injection -->
+        <constructor-arg ref="myFortune"></constructor-arg>
+
+        <!-- init method -->
+        
+    </bean>
+
+DEFAULT SCOPE
+--------------------------
+<bean scope="singleton"></bean>
+
+El default es:
+. Singleton
+Quiere decir que hay un solo Bean y que todos lo comparten. Una sola instancia
+
+. Prototype:
+    No Utiliza el destroy-method!!!!
+    Crea varias instancias del bean
+
+
+
+************************
+    JAVA ANNOTATIONS 
+************************
+    Nos da metadata acerca de la clase
+    Son labels personalizados
+    Reemplazan los xml basicamente
+
+@Component
+
+    1. Reemplazo los beans en el xml por esta linea
+    <beans>
+        <context:component-scan base-package="com.luv2code.springdemo" />
+    </beans>
+
+    2. Registro la anotacion en la clase, arriba de la declaracion
+        @Component("nombreDeIdDeLaClase")
+        Si no le paso nada, el nombre del id es la clase con minuscula inicial.
+
+    3. Traigo el bean desde la config
+                                                  bean id  ,  interface
+		Coach theCoach = context.getBean("nombreDeIdDeLaClase", Coach.class);
+
+@Autowired
+Spring busca un bean que implemente las clases que pase como argumentos
+En el ejemplo, va a crear una istancia de HappyFortuneService, ya que esta implementa a la interface FortuneService
+
+	@Autowired
+	public TennisCoach(FortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+
+    . Cuando hay mas de una implementacion, hay que ser mas especifico
+        Le indico que servicio especifico que implementa esa interfaz quiero usar
+
+    @Autowired
+    @Qualifier("happyFortuneService")
+    private FortuneService fortuneService;
 
 
 ***************************************************************************
@@ -58,6 +203,7 @@ Inversion of Control??
 
         > Tipos de DI
             .1 Constructor
+            .2 Setter
 
         /Spring a estas clases que van a ser inyectadas por el contenedor, las llama 
 
