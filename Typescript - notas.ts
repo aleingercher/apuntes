@@ -208,6 +208,24 @@ let superman: Hero = {
     powers: ["Super velocidad", "Super fuerza"],
   };
 
+
+/* 
+...............................................
+Personalizados desde una API como la de Pokemon
+...............................................
+
+https://pokeapi.co/
+https://app.quicktype.io/
+
+Copiamos el objeto que devuelve la api, lo pegamos en quicktype.
+Ponemos como lenguaje Typescript, Interfaces only
+
+Tiene una extension tambien!!!
+
+
+*/
+
+
 /* 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             CASTEO
@@ -442,6 +460,8 @@ console.log(falcon)
     // NO suelen usarse para metodos. Si necesitamos pasar un metodo, mejor utilizar una clase
     // si paso un metodo, este se debe implementar obligatoriamente
     // Se pueden implementar o usarse como un type
+    // Pueden asignarse a variables
+    //Es posible heredar interfaces con la palabra "extends"
     */
 
     interface XMEN {
@@ -461,7 +481,7 @@ console.log(falcon)
         public realName: string;
 
         mutantPower(id: number): string {
-            return ''
+            return this.name + '' + this.realName
         }
     }
     
@@ -471,3 +491,85 @@ console.log(falcon)
         age: 24,
         realName: 'Logan',
       };
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        GENERICOS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // se agrega un <T> y agrego como tipo de dato T al argumento (aunque puede ser cualquier otra letra o palabra en vez de T)
+    // esto hace que pueda ingresar cualquier tipo de archivo como argumento, pero cuando lo haga va a determinar su return con el mismo tipo de dato que el argumento
+*/
+export function genericFunction<T>(argument: T): T {
+    return argument;
+}
+
+export const arrowGenericFunction = <T> ( argument: T) => {
+    return argument;
+}
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        DECORADORES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://www.typescriptlang.org/docs/handbook/decorators.html
+
+    // Son funciones que se ejecutan cuando se transpila
+    // Hay que habilitarlos desde el tsconfig
+        "experimentalDecorators": true,  
+    
+    // en este ejemplo, creamos una funcion que toma una funcion como argumento.
+    // Al usarlo como decorador, le decimos a la funcion printToConsole que tome la clase como argumento
+*/
+function printToConsole(constructor: Function) {
+    console.log(constructor);
+  }
+  
+  @printToConsole
+  export class Pokemon {
+    public publicApi: string = "https://pokeapi.co";
+
+    constructor(public name: string) {}
+  }
+
+
+// FACTORY DECORATORS
+//  Son Decorators que retornan otra funcion. Como un callback digamos
+
+
+//DECORATORS de METODOS
+
+function CheckValidPokemonId() {
+    return function (
+      target: any,
+      propertyKey: string,
+      descriptor: PropertyDescriptor
+    ) {
+        // esta variable representa al metodo que vinculo
+      const originalMethod = descriptor.value;
+  
+      // extraigo los parametros que se pasaron al metodo al llamarlo
+      descriptor.value = (id: number) => {
+        if (id < 1 || id > 800) {
+          return console.error("El id del pokemon debe estar entre 1 y 800");
+        } else {
+            // por eso le paso el id
+          return originalMethod(id)
+        }
+      };
+    };
+  }
+  
+
+  export class Pokemon {
+    public publicApi: string = "https://pokeapi.co";
+  
+    constructor(public name: string) {}
+  
+    // este decorator vincula la funcion con ese metodo
+    @CheckValidPokemonId()
+    savePokemonToDB(id: number) {
+      console.log(`Pokemon guardado en DB. Id nro ${id}`);
+    }
+  }

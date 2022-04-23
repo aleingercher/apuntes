@@ -204,8 +204,9 @@ En el ejemplo, va a crear una istancia de HappyFortuneService, ya que esta imple
         > Tipos de DI
             .1 Constructor
             .2 Setter
+            .3 Field (es el que mas vamos a usar)
 
-        /Spring a estas clases que van a ser inyectadas por el contenedor, las llama 
+        /Spring a estas clases que van a ser inyectadas por el contenedor, las llama:
 
     , Spring Beans.
         Un Bean es una clase de Java que debe cumplir los siguientes requisitos:
@@ -215,6 +216,7 @@ En el ejemplo, va a crear una istancia de HappyFortuneService, ya que esta imple
 
     . o POJOs como objetos de negocio
         (Plain-Old-Java-Objects)
+
     . IDE --> Spring tool suite
         / podemos instalarselo al vscode tambien
 
@@ -361,8 +363,6 @@ nuevos estándares como HTML5.
         El video YML es por si hay algun problema con el Login
 
 github.com/agustinfiorde/Spring
-
-
 
 En pom.xml van a estar todas nuestras dependendcias
 Esta relacionado con Maven
