@@ -541,10 +541,10 @@ function printToConsole(constructor: Function) {
 //DECORATORS de METODOS
 
 function CheckValidPokemonId() {
-    return function (
-      target: any,
-      propertyKey: string,
-      descriptor: PropertyDescriptor
+    return function (       
+      target: any, // va a ser la clase donde aplique mi decorator
+      propertyKey: string, // el nombre de la variable o funcion que decore
+      descriptor: PropertyDescriptor // Si es un metodo el que decoro, me va a traer al metodo que estoy decorando
     ) {
         // esta variable representa al metodo que vinculo
       const originalMethod = descriptor.value;
@@ -567,9 +567,23 @@ function CheckValidPokemonId() {
   
     constructor(public name: string) {}
   
-    // este decorator vincula la funcion con ese metodo
+    // este decorator vincula la funcion con ese metodo mediante el argumento "descriptor"
     @CheckValidPokemonId()
     savePokemonToDB(id: number) {
       console.log(`Pokemon guardado en DB. Id nro ${id}`);
     }
   }
+
+
+  /* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        EXPRESS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Tengo que bajar libreria con los tipos 
+  // Esto me va a agregar el autocomplete tambien!
+  
+    > npm i --save-dev @types/express
+
+
+
+*/
