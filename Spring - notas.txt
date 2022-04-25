@@ -179,6 +179,60 @@ En el ejemplo, va a crear una istancia de HappyFortuneService, ya que esta imple
     private FortuneService fortuneService;
 
 
+@Scope("singleton")
+    Sirve para cambiar el scope de una clase
+
+@PostConstruct
+    Lo pongo en el metodo que quiera ejecutar luego de que se inyecten las dependencias
+    Deben ser No ARG methods
+
+@PreDestroy
+    Lo pongo en el metodo que quiera ejecutar para hacer un cleanup
+    Deben ser No ARG methods
+
+    (si no funcionan, este es el fix)
+
+    Solution
+
+        1. Download the javax.annotation-api-1.3.2.jar from 
+
+        https://search.maven.org/remotecontent?filepath=javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar
+
+        2. Copy the JAR file to the lib folder of your project
+
+        ---
+
+        Use the following steps to add it to your Java Build Path.
+
+        3. Right-click your project, select Properties
+
+        4. On left-hand side, click Java Build Path
+
+        5. In top-center of dialog, click Libraries
+
+        6. Click Classpath and then Click Add JARs ...
+
+        7. Navigate to the JAR file <your-project>/lib/javax.annotation-api-1.3.2.jar
+
+        8. Click OK then click Apply and Close
+
+        Eclipse will perform a rebuild of your project and it will resolve the related build errors.
+
+
+@Configuration
+@ComponentScan("com.luv2code.springdemo")
+public class SportConfig {
+
+}
+
+    // De esta forma podemos generar un contexto sin el applicationContext.xml
+    // Solo debemos crear una clase con esa configuracion
+    // Y poner esto en el main:
+
+    AnnotationConfigApplicationContext context = 
+        new AnnotationConfigApplicationContext(SportConfig.class);
+
+
 ***************************************************************************
 
 
