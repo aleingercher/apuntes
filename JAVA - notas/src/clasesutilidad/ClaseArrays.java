@@ -34,8 +34,9 @@ public class ClaseArrays {
         System.out.println("El arreglo copiado es igual a los primeros 5 numeros de vector2: " + Arrays.toString(arregloCopia));
 
         System.out.println("------------------------------------------------------");
-        System.out.println("Para ordenar Arrays");
         System.out.println("Sort: ");
+        
+        System.out.println("Para ordenar Arrays");
         Arrays.sort(vector1);
 
         System.out.println("El arreglo ordenado queda: " + Arrays.toString(vector1));
@@ -82,8 +83,8 @@ public class ClaseArrays {
         
 
 
-    }
+    };
 
 }
-
-}
+//
+//}
