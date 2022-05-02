@@ -4,7 +4,7 @@ https://github.com/agustinfiorde/Spring
 
 **************************************************************************
 JAVA 11. Video de Chad Darby
---------------------------------------------------------------------------
+-----------------------------------------
 https://repo.spring.io/ui/packages          //bajar paquetes
 
 
@@ -268,6 +268,35 @@ public class SportConfig {
 
     Esta notacion va encima de los atributos que queramos inyectar desde el archivo de proiedades
 
+@FunctionalInterface
+
+    Se usa cuando tengo un a interface con un solo metodo abstracto.
+    Puede ponerse o no, pero es buena practica hacerlo
+    Es requisito indispensable para usar FUNCIONES LAMBDA
+
+
+************************
+    FUNCIONES LAMBDA 
+************************
+    Precisa de @FunctionalInterfaces para usarse
+    Se usan para definir un metodo directamente, sin necesidad de instanciar la interface
+
+    NombreInterface nombreImplementacion = (s) -> "Meow" + s;
+
+    funcionQueUsaNombreInterface(nombreImplementacion);
+
+
+************************
+        HIBERNATE 
+************************
+@CreationTimestamp
+private Date dateCreated;
+    se encarga de generar el timestamp por nosotros en atributos tipo Date
+
+@UpdateTimestamp
+private Date lastupdated;
+    se encarga de updatear el timestamp por nosotros en atributos tipo Date
+
 ***************************************************************************
 
 
@@ -354,6 +383,10 @@ Pasos:
     2. Copiamos los Jar a la carpeta lib
         la carpeta WEB-INF/lib agrega automaticamente los jar que puse al Java BUild Path
     3. Agregamos 2 servlet extras que tenia Chad
+    4. Agrego estos dos archivos la carpeta WEB-INF
+        . spring-mvc-demo-servlet.xml // este es un spring config file
+        . web.xml
+    5. Crear carpeta WEB-INF/view
 
 , MAVEN
 Es una herramienta de soft para getsion de proyectos Java.
@@ -596,8 +629,8 @@ o
 .10) Creo los REPOSITORIOS dentro de un nuevo paquete edu.egg.tinder.repositorios donde van los repos de JPA
 
 / Se cambia el CLASS por INTERFACE
-                                               /    Repo de mascota | Id es String
-,       @Repository                             
+                                               
+,       @Repository                                 //    ENTITY | Id type
         public interface MascotaRepo extends JpaRepository<Mascota, String>{
                 @Query("SELECT c FROM Mascota c WHERE c.usuario.id = :id")
                 public List<Mascota> buscarMascotasPorUsuario(@Param("id") String id);

@@ -8,7 +8,8 @@ https://angular.io/guide/file-structure
 . SPA (partial updates). Ej: Maps, emails  
 . Angular 2 (2016) fue un rewrite entero del 1.JS (2010)  
 . Actualizaciones cada 6 meses  
-. Muchos desarrolladores usan las propiedades PUBLICAS y no usan los getters y setters 
+. Muchos desarrolladores usan las propiedades PUBLICAS y no usan los getters y setters
+. Modelo MVVM
 
 
 ## comandos consola
@@ -50,7 +51,9 @@ _CORRER COMO NPM START_
 
 _CREAR NUEVO COMPONENTE_
 
-        > ng generate component nombre-componente
+        > ng generate component nombre-componente  
+        o  
+        > ng g c nombre-componente
 
 _CREAR NUEVA CLASE_  
 Tengo que apuntar a la carpeta donde quiero que se cree la clase
@@ -98,7 +101,7 @@ Son como los Annotations en Java
 ##      DIRECTIVAS
 https://angular.io/api/common#directives
 
-### *ngFor
+### ***ngFor**
 
 For loop  
 Se usa con un for of  
@@ -109,7 +112,7 @@ Se usa con un for of
 </ul>
 ```
 
-### *ngIf
+### ***ngIf**
 
 For loop  
 Se usa con un for of  
@@ -133,7 +136,7 @@ Aplica clases condicionales si le paso un objeto
 ```
 
 
-##      ANGULAR PIPES
+##      PIPES
 https://angular.io/api/common#pipes
 
 ### currencyFormatting
@@ -141,3 +144,8 @@ https://angular.io/api/common/CurrencyPipe
 solo funciona para formatear, no realiza ningun calculo
 
         {{ person.salesVolume | currency: 'USD' }}
+
+***
+***
+## ANGULAR MATERIAL
+https://material.angular.io/guide/getting-started
