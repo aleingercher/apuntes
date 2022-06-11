@@ -26,6 +26,9 @@ Quirks  [kwəːk]
 Ledger   
 > a record of money received and paid
 
+Ought
+> Should have
+
 Side-effects
 > Unpleasant and unexpected result from taking medication
 
@@ -41,6 +44,12 @@ Switch off
 Wrinkles
 > Arruga para la ropa y cara
 
+## Esp to Eng
+
+Circunvalacion
+> Ringroad
+
+
 ## Rules
 
 [ED endings](https://englishforeveryone.org/PDFs/Pronouncing%20ED%20endings.pdf)
@@ -50,3 +59,4 @@ Wrinkles
 
     ...d
 
+[Must / might / may have / should]
