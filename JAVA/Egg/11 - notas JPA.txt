@@ -1,0 +1,137 @@
+>>Java
+>Persistent
+>Api
+
+* JPA usa JPQL en vez de SQL
+    * JPQL NO ACEPTA EL *.
+
+JPA es una especificación, es decir, no es más que un documento en el cual se plasman las reglas que debe de cumplir cualquier proveedor que dese desarrollar una implementación de JPA, de tal forma que cualquier persona puede tomar la especificación y desarrollar su propia implementación de JPA
+    Hibernate es un pionero en los motores de PERSISTENCIA
+    Establece como accedemos y reflejamos los datos laburados en netbeans
+
+Implementa ORM (Hibernate, EclipseLink. etc)
+%           Object
+%           Relational
+%           Mapping
+
+JDBC funcionaba simplemente con datos
+
+. JPA se desarrollo para trabajar con OBJETOS
+. Trabaja con entidades. Sirve para moldear la base de datos.
+    / Esto es que usa la clase Entidad para generar la tabla (Nombre, Documento, Apellido, etc)
+
+> PASOS
+    . 1. Ir Window > Services > Databases --> Click derecho, nueva coneccion
+
+    . 2. Usamos el driver : mysql-connector-java-5.1.48.jar . Esto nos CONECTA A LA BASE DE DATOS
+            . Esta la informacion de como se borra, se crea, etc...
+        . a. Dentro del proyecto, vamos a Libraries
+        . b. Click derecho, add JAR folder,...
+    . 3. Usar contraseña y usuario de mySQL y el nombre de la base de datos que tenga en el workbench
+
+    . 4. Vamos a generar una UNIDAD de PERSISTENCIA
+        . a. click der en el proyecto > new > Other > Persistence > Persistence Unit
+        . b. Se pone el nombre del proyecto y termina en PU (Onda, cursoPU)
+        . c. Selecciono la base de datos con la que me quiero conectar
+        . d. En las clases que voy a transformar en bases de datos:
+            . I. Agrego la notacion en todas las clases que vaya a relacionar
+                @Entity.
+                .Eso le dice que voy a relacionar esa entidad con una base de datos.
+            . II. Luego le marco cual va a ser mi primary Key con la notacion 
+                @id    
+            . III. Si hay clases date, tengo que agregarle la anotacion:
+                @Temporal(TemporalType.DATE)
+            . IV. Depende la relacion con otras clases, uno elige desde que clase las relaciona.
+                . No es una buena practica generar relaciones bidireccionales.
+                . tengo que poner las siguientes notaciones para MAPEAR:
+                @OneToOne  ---> para realciones onda, UN Curso, tiene UN profesor
+                @OneToMany ---> para relaciones tipo, UN Curso, tiene MUCHOS alumnos
+                @ManyToMany --> Muchos con Muchos
+                @ManyToOne
+            . V. Creo dentro de los metodos que crearan elementos en las tablas un
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory("NOMBRE DE LA UNIDAD DE PERSISTENCIA");
+                EntityManager em = emf.createEntityManager();
+
+
+        > Ahora llega el ABM                
+            . VI. Genero una funcion para Crear entidades (ALTA)
+                public void crearAlumno(Integer dni, String nombre, String apellido){
+                    Alumno alumno = new Alumno(dni, nombre, apellido, edad);
+                    // Primero COMIENZO la transaccion. luego PERSISTO, luego COMMITEO
+                    em.getTransaction().begin();
+                    em.persist(alumno por ejemplo)        
+                    em.getTransaction().commit();        
+                }
+
+                y uno donde le paso un alumno directamente
+
+                public void crearAlumno(Alumno alumno){
+                    em.getTransaction().begin();
+                    em.persist(alumno)        
+                    em.getTransaction().commit();        
+                }
+
+
+            . VII. primero tengo que saber como BUSCAR entidades: NOMBRE
+                . Puede ser con:
+                    ? em.createQuery
+                public List<Alumno> buscarPorNombre(String nombre){
+                    em.getTransaction().begin();
+                    List<Alumno> alumnos = em.createQuery("SELECT c FROM alumno c WHERE c.nombre LIKE :nombre") --> 
+                    // cuando uso :, inyecto un dato
+ -                                         .setParameter("nombre", "%" + nombre + "%")
+ -                                         .getResultList(); 
+                                            // si fuera un solo alumno, seria getSingleResult();
+                    em.getTransaction().commit(); 
+
+                    return alumnos; 
+                    // ---> DEVUELVE UNA LISTA DE ALUMNOS       
+                }
+
+                . O con:
+                    ? em.find
+                    // Le paso primero el tipo de clase del objeto que quiero que me devuelva
+                    // Luego la PRIMARY KEY a buscar
+                    Alumno alumno1 = em.find(  Alumno.class, VALOR DE PRIMARY KEY A BUSCAR)
+
+            . VIII. Luego para Editar o actualizar entidades (MODIFICACION)
+                    ? em.merge()
+                public void cambiarNombreALumno(Integer dni, String nuevoNombre){
+                    em.getTransaction().begin();
+                    // primero busco con CLASE y primary Key
+                    Alumno alumno = em.find(Alumno.class, dni);
+                    alumno.setNombre(nuevoNombre);
+                    // aca mergeo la informacion
+                    em.merge(alumno);        
+                    em.getTransaction().commit();        
+                }
+            . IX. Luego ELIMINAR entidades (BAJA):
+                    ? em.remove()
+                public void eliminarAlumno(Integer dni){
+                    em.getTransaction().begin();
+                    // primero busco un alumno, con dni que ingrese
+                    Alumno alumno = em.find(Alumno.class, dni);
+                    alumno.setNombre(nuevoNombre);
+                    em.remove(alumno);        
+                    em.getTransaction().commit();        
+                }
+            
+
+        . d bis. Algunas de estas funciones se pueden crear de forma automatica:
+			.I. Ir a Source Packages, boton secundario, other, persistence, JPA Controller Classes from Entity Classes...
+			.II. De allí te pregunta en que paquete va a ir y que entidades queres agregar.
+ 
+        . e. Se crea la carpeta META-INF. Ahi va a crearse un Persistence.xml
+        . f. Entro ahi. VOy abajo a la  derecha, le doy Add Class. Selecciono todas las entidades mapeadas
+
+    .5. Desde el main, creo una instancia de AlumnoServicio as.
+        .a. Creo un alumno.
+        .b. Llamo a as.crearAlumno(alumno)
+        .c. Ejecuto el main y ya impacta en la base de datos!!! Crea las tablas en base a las clases marcadas como @entity
+
+
+    .6 CUando una busqueda no se encuentra, la atrapo en un
+        catch(NoResultException e){
+            sout("no se encuentro el alumno que esta buscando")
+        }
+
