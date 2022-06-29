@@ -1,5 +1,70 @@
 /*% BLOCK DE NOTAS css */
 
+/* **************** */
+/* FEATURES COPADOS */
+/* **************** */
+
+/* 
+------------------
+carousel con snap 
+------------------
+
+HTML
+<div class="container">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>  
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>  
+</div>
+
+ */
+
+.container {
+    overflow: auto;
+    display: flex;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .box {
+    height: 200px;
+    width: 200px;
+    background: red;
+    margin-right: 5px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+/* 
+------------------
+    scrollbar 
+------------------
+*/
+
+body {
+    scrollbar-width: thin; /* "auto" or "thin" */
+    
+}
+body::-webkit-scrollbar {
+  width: 11px; /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-button {
+  display: none; /* estilos del boton */
+}
+
+body::-webkit-scrollbar-track {
+  background: white; /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #675544; /* color of the scroll thumb */
+}
+
 /* 
 > ----------- RESETS inicial ----------------
 > ------------------------------------------- */

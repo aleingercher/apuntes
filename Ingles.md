@@ -29,6 +29,9 @@ Ledger
 Ought
 > Should have
 
+Should have gone off
+> My alarm should have gone off 
+
 Side-effects
 > Unpleasant and unexpected result from taking medication
 
@@ -49,6 +52,12 @@ Wrinkles
 Circunvalacion
 > Ringroad
 
+Miope
+> Shortsighted
+
+Tachar
+> Scratch it out
+
 
 ## Rules
 
@@ -60,3 +69,7 @@ Circunvalacion
     ...d
 
 [Must / might / may have / should]
+
+> should + have + past participle
+
+[Past particle]

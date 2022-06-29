@@ -34,6 +34,17 @@ instalacion
                   ? npm run watch-css
 	Despues de esto, hay que dejar abierta la consola para que  compile justamente
 
+  Otro modo para hacerlo es
+  es como lo hizo Camila
+
+npm init
+
+npm install -g sass
+
+npm install -D node sass nodemon
+
+sass –w scss/main.scss css/styles.css
+
 
 
 * **********************
