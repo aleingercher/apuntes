@@ -8,6 +8,9 @@
 ------------------
 carousel con snap 
 ------------------
+*/
+
+/*  
 
 HTML
 <div class="container">
@@ -63,6 +66,29 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background-color: #675544; /* color of the scroll thumb */
+}
+
+/* 
+------------------------------------
+    Terminar texto en tres puntitos 
+------------------------------------
+*/
+
+.textoTerminaEnTresPuntos {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* 
+------------------------------------
+    Imagen vertical u horizontal para carousel
+------------------------------------
+*/
+.modal img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 /* 
@@ -452,13 +478,6 @@ input:focus {} /* Cuando se hace click o se toca en el celular.
     order: -1; /* por defecto, estan en 0. Es para 
  					que aparezca en un orden especifico (primero, segundo, etc...) */
 
-    flex-basis: 100%; /* reemplazaria al width o height .
-                        es el tamaño del elemento, pero solo me 
-                        indica un tamaño dependiendo el eje. 
-                        ES DECIR = 
-                        Si la direccion es ROW, la medida que trabaja es el width. 
-                        */
-
     flex-grow: 2/* Esta propiedad define que porcion del espacio sobrante toma ese item 
                 cuando CRECE . 
                 Esta propiedad se configura con un valor numérico entero natural 
@@ -476,6 +495,14 @@ input:focus {} /* Cuando se hace click o se toca en el celular.
                     uando no haya espacio suficiente. 
                     Cuantas veces se achicara con respecto 
                     a los demás. Si no anda, chequear el WRAP */
+
+    
+    flex-basis: 100%; /* reemplazaria al width o height .
+    es el tamaño del elemento, pero solo me 
+    indica un tamaño dependiendo el eje. 
+    ES DECIR = 
+    Si la direccion es ROW, la medida que trabaja es el width. 
+    */
 
     flex: 1 1 70%;
 

@@ -357,6 +357,7 @@ private Date lastupdated;
 https://docs.spring.io/spring-framework/docs/current/reference/html/web.html
 
 Spring Web MVC es un sub-proyecto Spring que está dirigido a facilitar y optimizar el proceso creación de aplicaciones web utilizando el patrón Modelo Vista Controlador.
+
     . Modelo
          representa los datos o información que maneja la aplicación web.
          Contiene la data
@@ -439,7 +440,11 @@ nuevos estándares como HTML5.
 !--------------------------
 !        PASOS
 !--------------------------
-.0) Instalar MAVEN
+.0) Instalacion MAVEN
+    - https://maven.apache.org/download.cgi
+    - Bajar Binary zip archive	apache-maven-3.8.6-bin.zip
+    - Poner carpeta en C: por ejemplo
+    - Advanced system settings -> Environment Variables -> Path.... Redireccionar el path a la ruta y agregarle /bin (C:\apache-maven-3.8.6\bin)
 
 .0.1) Tambien cambiar el application.properties por application.yml y pegar esto
 . Reemplazar la url con la base de datos que relacione
