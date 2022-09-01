@@ -68,6 +68,8 @@ body::-webkit-scrollbar-thumb {
   background-color: #675544; /* color of the scroll thumb */
 }
 
+
+
 /* 
 ------------------------------------
     Terminar texto en tres puntitos 
@@ -122,22 +124,40 @@ img {
 > ----------- SELECTORES --------------------
 > ------------------------------------------- */
 
-#ID {} /* id */
+#NOMBRE-ID {} /* id */
 
-.CLASE {} /* clase  */
+.NOMBRE-CLASE {} /* clase  */
 
-p.CLASE{} /* CLASE dentro de un p. Sirve para otro elemento cualquiera, hasta otra clase!.  */
+.NOMBRE-CLASE-UNO.NOMBRE-CLASE-DOS{} /* Cuando escribo dos selectores PEGADOS, quiere decir que selecciono a los elementos que tengan AMBAS COSAS. En este caso, tendra ambas clases juntas:
+        <div class="NOMBRE-CLASE-UNO NOMBRE-CLASE-DOS"></div>
+*/
+
+p.NOMBRE-CLASE{} /* parrafo con la clase NOMBRE-CLASE  */
+
 
 
 /*% FAMILIARES  */  
-.clase1 .clase2 {} /* cuando estan separados, el primero es padre, 
+.clase1 .clase2 {} /* HIJO. 
+                        cuando estan separados, el primero es padre, 
                         abuelo o tatarabuelo del segundo,
-                        por ejemplo <div class=clase1>
-                                        <p class= clase2> 
-                                    </div> */
+                        por ejemplo 
+                        <div class="clase1">
+                          <p class= "clase2"></p> 
+                        </div>
+                        o
+                        <div class="clase1">
+                          <div>
+                            <p class= "clase2"></p>
+                          </div> 
+                        </div>
+                         */
 
-.clase1 > p {}  /* direct children.
-                esto va seleccionar los p que sean hijos DIRECTOS */
+.clase1 > p {}  /* HIJO DIRECTO.
+                esto va seleccionar los p que sean hijos DIRECTOS 
+                solo
+                <div class="clase1">
+                  <p class= "clase2"></p> 
+                </div>*/
 
 .clase1 .box + .box {}/* adjacent sibling
                         ponele que tenemos 4 .box en .clase1

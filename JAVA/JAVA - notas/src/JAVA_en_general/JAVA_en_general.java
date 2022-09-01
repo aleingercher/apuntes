@@ -6,6 +6,12 @@ public class JAVA_en_general {
 
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
+
+        /* 
+        HISTORIA
+
+        James Gosling en 1996
+         */
         
 // VARIOS
 
@@ -13,6 +19,19 @@ public class JAVA_en_general {
     // los atributos que apunta a un objeto: NULL.
     // Si es numerico: 0;
     // si es boolean: false;
+
+    /* 
+     ESTRUCTURA DESDE EL JDK
+     JDK  --> JRE(Coleccion de herramientas. Contiene al JVM) --> JVM(Lee el Java ByteCode. O sea, los archivos.class ya compilados)
+          --> Compilador java
+          --> API de java
+        Dos opciones:
+            Open JDK
+            JDK Oracle (pago). Se usa para produccion
+
+    
+    !importante! Desde la version 11 de JAVA ya no existe el JRE
+     */
     
     
     //--------------------------------------------------------------

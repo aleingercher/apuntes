@@ -1,5 +1,8 @@
 # INGLES
 
+## Cotidiano
+
+
 ## Frases
 
 Agitated
@@ -44,19 +47,37 @@ Slums
 Switch off
 > stop thinking about something and think about something else
 
+Throughout
+> A traves de 
+
 Wrinkles
 > Arruga para la ropa y cara
 
 ## Esp to Eng
 
+Antojo
+> Craving
+
 Circunvalacion
 > Ringroad
+
+Campo cerca de la ciudad
+> Country side
+
+Flete
+> Cargo
 
 Miope
 > Shortsighted
 
 Tachar
 > Scratch it out
+
+
+## Pronunciation
+
+Mirror
+> _Mirur_
 
 
 ## Rules
