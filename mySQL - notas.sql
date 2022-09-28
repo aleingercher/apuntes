@@ -130,7 +130,10 @@ contexto y almacenados sistemáticamente para su posterior uso
 ? Tiene DOS tipos de comandos:
     ? DDL (Data DEFINITION Language)
     / Crea y define nuevas bases de datos o tablas
-        . CREATE TABLE x
+        . CREATE TABLE  usuarios (
+            nombre varchar(50),
+            email varchar(50)
+            );
             crea
         . DROP TABLE x
             borra o elimina
@@ -192,3 +195,26 @@ SELECT
 
 --> 7) Si quiero guardar esa consulta (si por ej solo veo X columnas e Y filas), creo una VIEW
 CREATE VIEW
+
+
+/* 
+Clase JAVA WEB APIs
+
+# Inserto usuario SIN encriptacion
+insert into usuarios(correo, clave, fechaActualizacion, fechaCreacion)
+values('user3@gmail.com', '1234', '2022-08-28', '2022-07-20');
+
+# PASSWORDS ENCRIPTADAS
+# si quiero insertar una password CON encriptacion
+# usando aes_encrypt('1234', 'JavaWebApi')
+insert into usuarios(correo, clave, fechaActualizacion, fechaCreacion)
+values('user1@gmail.com', aes_encrypt('1234', 'JavaWebApi'), '2022-08-28', '2022-07-20');
+
+# para desencriptarla uso el cast y el aes_decrypt
+select correo, clave, cast(aes_decrypt(clave, 'JavaWebApi') as char(50)),fechaActualizacion, fechaCreacion
+from usuarios;
+
+# borra la tabla
+truncate table usuarios;
+
+ */

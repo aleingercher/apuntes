@@ -67,6 +67,9 @@ Campo cerca de la ciudad
 Flete
 > Cargo
 
+Mal visto
+> Cutting reunions to go to an english class, is frowned upon
+
 Miope
 > Shortsighted
 
