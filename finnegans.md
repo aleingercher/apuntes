@@ -16,6 +16,11 @@ Todas las capas tienen diferentes modulos dentro
     usuario: ceresliveclientes
     clave:  guevaraPower533
 
+## SonarQube
+
+    user: aingercher
+    pass: L2z5UiYb5oebB3
+
 ## Glosario
 
 
@@ -37,6 +42,18 @@ nro factura | empresa   | Fecha | producto  | cant  | valor | subtotal  | total
     001     | coto      | 2/22  | cocacola  | 2     | 100   | 200       | 950
     001     | coto      | 2/22  | sprite    | 5     | 150   | 750       | 950
 
+**PNC**
+Productos No Conformes
+
+**PPP**
+Precio promedio ponderado.   
+El sistema toma de forma automática el promedio del precio del bien de cambio a partir de las facturas de compra del periodo que se esté valorizando, valuándolas a dicho importe.
+
+**PUC**
+Precio Ultima Compra
+
+Es para valorizacion
+
 **Teamplace**  
 Es la aplicacion
 
@@ -44,6 +61,28 @@ Es la aplicacion
 0. Productos
 1. Conceptos calculados
 2. Vencimientos
+
+**VNR**
+Valor Neto Realizable
+
+En ABM de productos, es el Costo Standard
+
+Es el precio que podemos obtener por un elemento de nuestro activo, es decir, a qué precio podemos venderlo.  
+Se calcula mediante la diferencia entre el valor de mercado (precio de venta) y los costos asociados de venta, entre los cuales se incluyen: Transporte, comisiones de los vendedores u otros siempre que estén directamente relacionados al proceso de venta; para llegar así al valor neto realizable.
+
+### Rutas de archivos que pueden faltar
+
+## JS
+Si la consola del chrome te tira que falta algun js, ver si estan en
+
+> /home/finnegans/wildfly18/standalone/deployments/ERPWeb.war
+
+Si faltan por ejemplo, _ordenproduccion.js_, agregarle
+
+> /general/forms
+
+
+
 
 ### TIPOS DE CLASE  
 - **VO**  
@@ -54,8 +93,6 @@ Controlador (Helper)
 
 - **FORM**  
 Vistas (los js y xml son tambien vistas)
-
-
 
 ## BSUITE
 
