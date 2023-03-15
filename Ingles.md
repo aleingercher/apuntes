@@ -3,10 +3,13 @@
 ## Cotidiano
 
 
-## Frases
+## Idioms
 
 Agitated
 > get worried or upset
+
+Back on track
+> Volver a estar activo en algo
 
 Conceal
 > Something like hide 
@@ -47,8 +50,14 @@ Slums
 Switch off
 > stop thinking about something and think about something else
 
+Tailor us
+> nos configura de cierta manera
+
 Throughout
 > A traves de 
+
+Trendy
+> A la moda
 
 Wrinkles
 > Arruga para la ropa y cara
@@ -81,6 +90,9 @@ Tachar
 
 Mirror
 > _Mirur_
+
+Reasonable
+> Riiiizonable
 
 
 ## Rules

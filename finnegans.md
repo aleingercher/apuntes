@@ -70,9 +70,9 @@ En ABM de productos, es el Costo Standard
 Es el precio que podemos obtener por un elemento de nuestro activo, es decir, a qué precio podemos venderlo.  
 Se calcula mediante la diferencia entre el valor de mercado (precio de venta) y los costos asociados de venta, entre los cuales se incluyen: Transporte, comisiones de los vendedores u otros siempre que estén directamente relacionados al proceso de venta; para llegar así al valor neto realizable.
 
-### Rutas de archivos que pueden faltar
+### PROBLEMAS COMUNES
 
-## JS
+## Rutas de archivos que pueden faltar - JS
 Si la consola del chrome te tira que falta algun js, ver si estan en
 
 > /home/finnegans/wildfly18/standalone/deployments/ERPWeb.war
@@ -80,6 +80,16 @@ Si la consola del chrome te tira que falta algun js, ver si estan en
 Si faltan por ejemplo, _ordenproduccion.js_, agregarle
 
 > /general/forms
+
+## Se rompe openframe, no compila NADA y pide la clase FAFUtils
+
+SOLUCION
+
+1. borrate openframe, clonalo de nuevo
+2. Borrar la carpeta fafcache de Home/m2/repository/finnegans
+3. luego solo compilate LegacyFafCache y Framework
+4. parate en la carpeta openframe y corre esto en consola
+    mvn -f pomGlobal.xml clean install
 
 
 
