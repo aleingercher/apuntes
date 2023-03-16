@@ -90,7 +90,7 @@ Parchear --> PATCH
     Códigos de estado 2xx – Éxito
     Códigos de estado 3xx – Redirecciones
     Códigos de estado 4xx – Errores del cliente
-    Códigos de estado 5xx –Errores del servidor
+    Códigos de estado 5xx – Errores del servidor
 
     . Algunos importantes
     200 – OK, Petición procesada correctamente.
