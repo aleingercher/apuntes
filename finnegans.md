@@ -952,3 +952,37 @@ Componente para mostrar y editar datos
     caption="REFE"/> -> Input
 ```
 
+# APIS
+
+1. Ir al archivo AuthManager.java
+
+2. Reemplazar la URL DEBUG en el BASE
+
+    private static String REAL_API_URL = Parameters.getServerParameter(API_BASE_URL_PARAM, "https://api.teamplace.finneg.com/api");
+    private static String DEBUG_API_URL = Parameters.getServerParameter(API_BASE_URL_DEBUG_PARAM, "http://localhost:5000/api");
+
+3. en FAFApps/fafServer.alt.wildfly.xml_
+agregar esta linea
+
+``` xml
+<!-- Para debbug API -->
+		<atribute name="API_BASE_URL_DEBUG" value="https://api-dev.finneg.com/api"/>
+```
+
+4. Ir a una base, Seguridad -> Usuarios -> _Administrador o Supervisor_ ->  sacar las Keys APi
+
+5. Obtener TOKEN  
+    Pegarle GET a este link y colocar aca el usuario y password del .4 
+
+> http://localhost:8080/BSA/api/oauth/token?grant_type=client_credentials&client_id={{clientId}}&client_secret={{clientSecret}}
+
+6. Peticion
+    Usar el token obtenido para pegarle a este endpoint
+    La URL la sacamos de
+        _Diccionario de Apis_
+
+        Para ANALISISPEDIDOSVENTAAPI es
+        http://localhost:8080/BSA/api/reports/ANALISISPEDIDOSVENTAAPI
+
+    La URL + el query param del token quedan algo asi como 
+    > http://localhost:8080/BSA/api/reports/ANALISISPEDIDOSVENTAAPI?ACCESS_TOKEN={{tokenApi}}
