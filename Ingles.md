@@ -1,14 +1,23 @@
 # INGLES
 
+## Links
+[pronunciacion](https://www.bbc.co.uk/learningenglish/features/pronunciation)
+
 ## Frases que me cuestan
 
 I haven't had vacations yet
 
 - Me mude a Villa de la Rosas hace un mes  
+    I moved to Villa de las Rosas a month ago  
+    I have been living in Villa de las Rosas for a month.
 
-        I moved to Villa de las Rosas a month ago  
-        I have been living in Villa de las Rosas for a month.
+- Estamos juntos hace 17 años  
+    We've been together for 17 years
 
+
+I've achieved 3 out of 5
+
+Join a Zoom meeting (not GET into)
 
     Felicity:
     Teachers training
@@ -26,6 +35,35 @@ I haven't had vacations yet
 
     Good Morning, how is your morning over there?
 
+## ENTERVIEW
+
+Pleased to meet you!
+I really appreciate being considered for this role
+Thank you for making the time to meet me.
+
+I'm doing great!
+
+I moved to Villa de las Rosas a month ago  
+I have been living in Villa de las Rosas for a month.
+
+I began my career in sound editing, but i've always been drawn to programming.
+I worked as a Sound editor for 13 years
+
+I worked for Neoris as a Full stack developer  
+I have 2 years experience in software engineering
+
+I have a particular interst in.... 
+I think the mos valuable skills are...
+i am good at...
+I am qualified in
+
+By helping whit some project tracking technologies, i was able to increase the performance of our sector
+
+Sometimes I do too much thinking before moving forward with a solution, but I am working on it, trying to perform actions more often, without overthinking. And then act if necessary to correct the course.
+
+XXXXXX
+DONT talk bad about last company
+DONT talk bad about former partners
 
 ## Words & Idioms
 
@@ -59,6 +97,9 @@ Encroach
 Ensure
 > Make sure (pero formal)
 
+Entangled  
+> Enredado
+
 Everyonce in a while
 > Una vez cada tanto
 
@@ -85,8 +126,6 @@ I went back to  the roots
 
 Lack of management resources
 > Pocos recursos de management
-
-
 
 Learn by heart
 > Learning from Memory
@@ -143,11 +182,17 @@ Suburbs
 Switch off
 > stop thinking about something and think about something else
 
+Tackle down
+> atacar 
+
 Tailor us
 > nos configura de cierta manera
 
 Throughout
 > A traves de 
+
+Touristy  
+> Tour
 
 Trendy
 > A la moda
@@ -172,6 +217,9 @@ Antojo
 Arroyo
 > Stream or brook
 
+Campo cerca de la ciudad
+> Country side
+
 Chimenea
 > Chimney -> Afuera   
 > Fireplace -> The place where you burn wood or coal.
@@ -179,20 +227,29 @@ Chimenea
 Circunvalacion
 > Ringroad
 
-Campo cerca de la ciudad
-> Country side
+Cruzarse gente
+> Come across people
 
 Entre comillas
 > between inverted commas
 
+Espera un poco
+> Wait a sec || Just a sec || hang on
+
 Flete
 > Cargo
+
+Llegar a fin de mes
+> Makes ends meet
 
 Mal visto
 > Cutting reunions to go to an english class, is frowned upon
 
 Miope
 > Shortsighted
+
+Repasar
+> Go over something
 
 Tacaño
 > Tight fisted
@@ -205,14 +262,28 @@ Tierra (de plantar)
 
 ## Pronunciation
 
+Enjoy
+> (Tratar de usar shnz, no un ENSHHHHOY)
+
 Mirror
 > _Mirur_
 
+Question
+> kwes·chn
+
 Reasonable
-> Riiiizonable
+> Riiiizonable  
+> ree·zuh·nuh·bl
+
+Vacations
+> (Tratar de usar shnz, no un vaqueiSHHHHHHHHons) - 
+vay·kay·shnz
 
 Vision
 > vi·zhn
+
+
+
 
 
 

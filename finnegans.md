@@ -91,6 +91,13 @@ SOLUCION
 4. parate en la carpeta openframe y corre esto en consola
     mvn -f pomGlobal.xml clean install
 
+## cargar horas 
+
+1. Ir al numero de caso en el Jira
+2. Buscar a la derecha abajo, 'Nro caso CRM'
+3. Entrar a CRM
+4. Ir a WS -> Casos CBG (CeresTeamplace)
+
 
 
 
@@ -354,11 +361,10 @@ END
 
 Con este archivo, el JBOSS entiende que bases de datos esta levantando.
 
-
 Este es el bloque de codigo que hay que copiar y pegar para configurar una nueva base de datos.
 ```xml
-<datasource jndi-name="java:/jboss/datasources/COMERCIALIZADORA" pool-name="COMERCIALIZADORA">
-                    <connection-url>jdbc:jtds:sqlserver://localhost/FAF12_Comercializadora;tds=8.0;lastupdatecount=true</connection-url>
+                <datasource jndi-name="java:/jboss/datasources/NOMBRE_DE_BASE_DE_DATOS" pool-name="NOMBRE_DE_BASE_DE_DATOS">
+                    <connection-url>jdbc:jtds:sqlserver://localhost/FAF12_NOMBRE_DE_BASE_DE_DATOS;tds=8.0;lastupdatecount=true</connection-url>
                     <driver>jtds</driver>
                     <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
                     <pool>
@@ -512,10 +518,11 @@ Pasos si no esta en FAFApps
 1. Lo agrego en el archivo _fafconfigmodules.xml_
 
 1. Quiero linkear coto/Resources/FAFApps/COTO en mi carpeta home/FAFApps
-    1. voy a linea de comando, me paro en FAFApps  
-        ```ln -sf /home/finnegans/workspace/coto/Resources/FAFApps/COTO COTO```  
+    1. voy a linea de comando, me paro en FAFApps. Importante el nombre del modulo en **MAYUSCULAS**  
+        ```ln -sf /home/finnegans/workspace/coto/Resources/FAFApps/COTO COTO``` 
         ln = link  
         -sf = soft
+1. Asegurarse de que el modulo nuevo este en el POM global
 -----
 -----
 1. Si me clono un modulo, como MANUFACTURA, arranco desde el .3
@@ -589,7 +596,8 @@ Herramienta de Teamplace para manejar base de datos desde desde la App
         _Ej: OperacionVO_  
         Son entidades con temporalidad. Puede ser Factura
     - **EntidadAdicionalVO**  
-        Cuando un cliente quiere agregar alguna clase desde Teamplace SIN CODIGO
+        - Cuando un cliente quiere agregar alguna clase desde Teamplace SIN CODIGO
+        - Lo construye desde la APLICACION (SIN codigo Java)
             1. Tipo: EntidadAdicional 
         Ej: como el ARSAT quiera agregar cohetes.
         - **AtributoVO** 
@@ -615,11 +623,11 @@ Herramienta de Teamplace para manejar base de datos desde desde la App
     .js, .xml
 
  
-### Pasos para crear una entidad PRIMARIA
+### Pasos para crear una entidad PRIMARIA (**Maestro**)
 - EN INTELLIJ 
     1. Voy a _app/NOMBRE_MODULO/configuracion_
     1. Creo lo siguiente:
-    1. Creo lo siHLPiente:
+    1. Creo HLP y VO:
         - _telefonica/controller/CelularHLP.java_
         - _telefonica/model/CelularVO.java_
     1. Copiar contenido de _PaisVO_ y _PaisHLP_ y tocar los siguiente:
@@ -677,7 +685,7 @@ Herramienta de Teamplace para manejar base de datos desde desde la App
 
                     caption="Fecha de Fabricacion"/>
             ```
-    - En _clasesHLP.xml_
+    - En _/forms_ , dentro de _clasesHLP.xml_
         ```xml
             <fafClass>
                 <atribute name="name" value="CELULARVO"/>
@@ -685,7 +693,7 @@ Herramienta de Teamplace para manejar base de datos desde desde la App
                 <atribute name="FullClassName" value="app.onboarding.configuracion.telefonica.controller.CelularHLP"/>
             </fafClass>
         ```
-    - En _clasesVO.xml_
+    - En _/forms_ , dentro de _clasesVO.xml_
         ```xml
             <fafClass>
                 <atribute name="name" value="CELULARVO"/>
@@ -739,6 +747,7 @@ Herramienta de Teamplace para manejar base de datos desde desde la App
         GO
 
         -- CREAR DICCIONARIO DE DATOS
+        -- el campo SelectGrid es una query que va a ser el default de la view. O sea, deberia poner ahi todos los campos que quiera que se vean en la viewer
         IF NOT EXISTS(SELECT *
         FROM FAFDiccionario
         WHERE Codigo = 'CELULAR')  
@@ -758,7 +767,7 @@ Herramienta de Teamplace para manejar base de datos desde desde la App
                 'SELECT OBCelular.CelularID, OBCelular.Nombre FROM OBCelular ORDER BY OBCelular.Nombre',
                 0, 0, ''
             FROM FAFDiccionario
-            WHERE Codigo = 'INTEGRANTE'
+            WHERE Codigo = 'CELULAR'
 
         END  
         GO  
