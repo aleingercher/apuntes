@@ -37,14 +37,13 @@ instalacion
   Otro modo para hacerlo es
   es como lo hizo Camila
 
-npm init
+1. npm init
 
-npm install -g sass
+2. npm install -g sass
 
-npm install -D node sass nodemon
+4. sass –w scss/main.scss css/styles.css
 
-sass –w scss/main.scss css/styles.css
-
+// opcional 3. npm install -D node-sass nodemon
 
 
 * **********************

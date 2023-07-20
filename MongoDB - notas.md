@@ -1,23 +1,128 @@
-/* 
-, MONGOdb
-    . Permite la ejecucion de JS del lado del servidor
-    . Base de datos no relacional (NoSQL)
-    . Estructura BSON (JSON Binario). Tiene colecciones con documentos dentro
+# MONGOdb
+- Viene de _humongous_ que significa _gigante_
+- Base de datos no relacional (NoSQL)
+- Permite la ejecucion de JS del lado del servidor
+- Estructura BSON (JSON Binario). Tiene colecciones con documentos dentro
+- Potente sintaxis de consulta
+- Cualquier campo puede ser indexado. Puede tener indices secundarios
+- Escalable 
+- Proposito general
+- Esta escrito en C++
+- __Document__ Oriented
+- Schemaless
+- Facil escalado horizontal. Si crecemos, agregamos mas maquinas. No necesitamos una mas potente, sino mas compus.
 
-    . Potente sintaxis de consulta
-    . Cualquier campo puede ser indexado. Puede tener indices secundarios
+- Surge de las __Limitaciones de las bases SQL__
+    - Escrituras no durables ni verificables
+    - Problemas de escalabilidad
+    - Era complicado el manejo de transacciones
 
-    !limitaciones
+## Estructura
+> TABLAS > BASES DE DATOS > COLECCIONES > DOCUMENTOS
 
-    . Escrituras no durables ni verificables
-    . Problemas de escalabilidad
-    . Era complicado el manejo de transacciones
+## MongoDB Server
 
-                   / TABLAS
-* BASE DE DATOS --> COLECCIONES --> DOCUMENTOS
+### Atlas  
+> La nube
 
-% METODOS
-/https://docs.mongodb.com/manual/reference/operator/query/#std-label-query-projection-ope rators-top
+### Server
+> Local
+
+## Instalacion
+
+### Agregar al PATH
+
+1. _C:\Program Files\MongoDB\Server\5.0\bin_
+
+2. Voy a Environment Variables > User PATH y la pego
+
+3. Voy a _C:_ y creo una carpeta _C:/data/db_
+
+## SHELL
+
+- Corre Javascript. Puedo correr comandos de JS, usar librerias (Date, Math, etc...)
+
+## Comandos basicos
+Chequear instalacion  
+
+    mongod --version
+
+Comenzar la ejecucion del server mongo  
+
+    mongod
+
+Conectar al servidor y abrir mongo SHELL
+
+    mongo
+
+Ver la DB ACTUAL
+
+    db
+
+Ver TODAS las DB
+
+    show dbs
+
+Usar alguna DB. Si no existe LA CREA
+
+    use _NOMBRE DB_
+
+HELP
+
+    db.help()
+
+## Comandos CRUD
+
+Crear DB
+
+    use _NOMBRE DB_
+
+Borrar DB (parado en la base que quiero borrar)
+
+    db.dropDatabase()
+
+Ver las colecciones
+
+    show collections
+
+Crear coleccion
+
+    // Asi creamos la coleccion mientras insertamos el primer doc
+    db._NOMBRE COLECCION_.insert({"name": "laptop"})
+
+    o
+
+    db.createCollection("users")
+
+Borrar coleccion
+    
+    db._NOMBRE COLECCION_.drop()
+
+Insertar un documento
+
+    db.products.insert({"name": "laptop"})
+
+Buscar TODOS los documentos
+
+    db.products.find()
+
+    o
+
+    db.products.find().pretty()
+
+
+Buscar filtrando
+
+    db.products.find({name: "mouse"})
+
+Buscar el PRIMERO
+
+    //                                  devuelve solo el name y description
+    db.products.findOne({name: "mouse"}, {"name": 1, "description": 1, "_id": 0})
+
+
+## METODOS
+/https://docs.mongodb.com/manual/reference/operator/query/#std-label-query-projection-operators-top
 
     > db.COLLECCION.insertMany() 
         / inserta nuevos documentos en la coleccion indicada
@@ -25,8 +130,6 @@
 
     > db.COLECCION.find({<field> equals <value>}) --> FILTER
                         / { "directors" : "Steven Spielberg"}
-    > db.COLECCION.find({}) --> SELECT ALL
-        / Select all documents from a collection
 
     % COMPARACIONES
     /https://docs.mongodb.com/manual/reference/operator/query-comparison/#std-label-query-selectors-comparison
@@ -247,5 +350,3 @@ se suele correr en el puerto 27017
     . La alternativa es por
         /        metodo            url            header                 info del payload
         ? curl -X POST localhost:5000/api/personas -H  {contenido header} --data '{datos}' 
-        
-*/

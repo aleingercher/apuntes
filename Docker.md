@@ -269,6 +269,144 @@ Las agregamos con el -e (Variable de entorno)
 
 11. Starteo primero mongo, luego la app
 
+## Docker Compose
+1. Creo un archivo nuevo  
+_docker-compose.yml_
+
+``` yml
+version: "3.9"
+services:
+  chanchito:  
+    build: . # aca le digo que buildee la carpeta donde esta el archivo
+    ports:
+      # host: container
+      - "3000:3000"
+    # - aca puedo hacer otro mapeo
+    links:
+      - monguito # los nombres de los contenedores SIN comillas
+  monguito:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=nico
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+```
+
+2. Ejecuto
+
+    docker compose up
+
+Y listo , tenemos el container corriendo!
+En la consola vemos el log.
+
+Este crea una nueva imagen:  
+    mongoapp-curso-docker-chanchito
+
+Y dos nuevos containers:
+    mongoapp-curso-docker-chanchito
+    mongo
+
+- Si volvemos a ejecutar el comando _docker compose up_, va a levantar los containers que ya creamos, no hace unos nuevos.
+
+3. Borramos todo si necesitamos
+
+    docker compose down
+
+Esto elimina:  
+- los dos containers.
+- la red que habia creado automaticamente.
+
+__NO__ elmina:  
+- la imagen
+- los volumenes
+
+
+## Volumes
+
+Cuando quiero conservar datos de un container que elimino. Guarda una carpeta en mi OS.
+
+- __Anonimo__
+
+- __Anfitrion o host__
+
+- __Nombrado__
+
+
+1. Voy a mi __docker compose__
+
+2. Agrego las lineas sobre volumes en el docker-compose:
+
+``` yml
+    volumes:
+      # aca definimos que volumen especifico quiero usar para este container
+      - mongo-data:/data/db  # por defecto, mongo guarda sus datos en esta ruta
+      # mysql -> /var/lib/mysql
+      # postgres -> /var/lib/postgresql/data
+
+volumes: # define todos los volumenes que van a usar mis contenedores
+  mongo-data:
+  
+```
+
+## CONFIGURAR AMBIENTES
+
+Por eejemplo, quiero crear un ambiente DEV
+
+1. Creo _Dockerfile.dev_
+
+``` Dockerfile
+FROM node:18
+
+RUN npm i -g nodemon # aca aprovecho para instalar dependencias
+RUN mkdir -p /home/app
+
+WORKDIR /home/app # le decimos que vamos a estar trabajando aca. Entonces CMD cambia y se saca la ruta
+
+# como el volume ya me trae el codigo de la aplicacion, no necesito el codigo COPY
+
+EXPOSE 3000
+
+CMD ["nodemon", "index.js"]
+```
+
+2. Luego creo   
+_docker-compose-dev.yml_
+``` yml
+version: "3.9"
+services:
+  chanchito:  
+    build:
+      context: . # esto cambia en relacion al original
+      dockerfile: Dockerfile.dev # aca le indico el Dockerfile nuevo que hice
+    ports:
+      - "3000:3000"
+    links:
+      - monguito
+    volumes:
+      - .:/home/app # mi ruta actual es la que tiene que ser montada en el volumen
+                    # luego, indico la ruta de destino DENTRO del contenedor
+  monguito:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=nico
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+  
+```
+
+3. Ejecuto:  
+
+        docker compose -f docker-compose-dev.yml
+        // el flag -f sirve para indicar OTRO compose
+
 # COMANDOS VARIOS
 
 Muestra las imagenes que estan INSTALADAS en la maquina  
